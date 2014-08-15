@@ -19,4 +19,4 @@ android:
     - addon-google_apis-google-20
 
 
-script: ./samples/001_basic/gradlew assemble
+script: ./gradlew assemble
