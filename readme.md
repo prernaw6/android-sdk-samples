@@ -20,12 +20,12 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 2. your gradle file:
 
 	```groovy
-		repositories {
-		    mavenCentral()
-		    maven {
-		        url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
-		    }
-		}
+	repositories {
+	    mavenCentral()
+	    maven {
+	        url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
+	    }
+	}
 	```
 
 3. Copy the **SensorbergApplicationBootstrapper.java** in your project. It encapsulates the basic setup to ease the next steps.
@@ -33,27 +33,27 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 4. Set up the SDK in your Application class:
 
 	```java
-		public class DemoApplication extends Application
-		{ 
-		    private SensorbergApplicationBootstrapper boot;
-		
-		    @Override
-		    public void onCreate() {
-		        super.onCreate();        
-		
-		
-		        ScannerConfiguration scannerConfiguration = new ScannerConfiguration(this);
-		        scannerConfiguration.setExitEventDelay(15000);
-		        ResolverConfiguration resolverConfiguration = new ResolverConfiguration(this, "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d");
-		        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(this);
-		
-		
-		        //bootstrap the complete integration, keep a local reference to the bootstrapper
-		        boot =  new SensorbergApplicationBootstrapper()
-		                .bootstrapApplication(scannerConfiguration, resolverConfiguration, presenterConfiguration)
-		                .bootstrapBackgroundScanning();
-			}
+	public class DemoApplication extends Application
+	{ 
+	    private SensorbergApplicationBootstrapper boot;
+	
+	    @Override
+	    public void onCreate() {
+	        super.onCreate();        
+	
+	
+	        ScannerConfiguration scannerConfiguration = new ScannerConfiguration(this);
+	        scannerConfiguration.setExitEventDelay(15000);
+	        ResolverConfiguration resolverConfiguration = new ResolverConfiguration(this, "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d");
+	        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(this);
+	
+	
+	        //bootstrap the complete integration, keep a local reference to the bootstrapper
+	        boot =  new SensorbergApplicationBootstrapper()
+	                .bootstrapApplication(scannerConfiguration, resolverConfiguration, presenterConfiguration)
+	                .bootstrapBackgroundScanning();
 		}
+	}
 	```
 
 
