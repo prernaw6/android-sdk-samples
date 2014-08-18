@@ -1,1 +1,4 @@
-include ':samples/001_basic'
+include 'samples/001_basic'
+include 'samples/002_basic_with_local_dependency'
+include 'samples/003_local_dependency'
+include 'samples/004_basic_with_jar_dependency'

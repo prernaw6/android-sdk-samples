@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">sdk-demo</string>
+    <string name="title_activity_background">BackgroundActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_enable_component">EnableComponentActivity</string>
+    <string name="action_enableBroadcastReceiver">enable Broadcasting</string>
+    <string name="action_disableBroadcastReceiver">disable Broadcasting</string>
+
+</resources>
