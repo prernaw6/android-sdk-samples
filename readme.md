@@ -26,11 +26,16 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 	        url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
 	    }
 	}
+	
+	dependencies {
+        compile 'com.sensorberg.sdk:sensorberg-sdk:+'
+        compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:+')/*{
+            exclude group: 'com.sensorberg.sdk', module: 'sensorberg-sdk'
+        }*/
+    }
 	```
 
-3. Copy the **SensorbergApplicationBootstrapper.java** in your project. It encapsulates the basic setup to ease the next steps.
-
-4. Set up the SDK in your Application class:
+3. Set up the SDK in your Application class:
 
 	```java
 	public class DemoApplication extends Application
@@ -56,17 +61,14 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 	}
 	```
 
-
-
 #samples
 
 browse the samples folder to see basic integrations of the SDK
-
-	samples
-	├── 001_basic
-	├── 002_basic_with_local_dependency
-	├── 003_local_dependency
-	└── 004_basic_with_jar_dependency
+	
+	── 001_basic
+	── 002_basic_with_local_dependency
+	── 003_local_dependency
+	── 004_basic_with_jar_dependency
 
 ##001_basic sample
 
