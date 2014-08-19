@@ -15,6 +15,18 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 	<uses-permission android:name="android.permission.VIBRATE"/>
+	
+	<application>
+	    <!-- your activities... -->
+	    <receiver
+                android:name="com.sensorberg.sdk.background.ScannerBroadcastReceiver"
+                android:enabled="false" >
+                <intent-filter>
+                    <action android:name="android.intent.action.USER_PRESENT" />
+                    <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+                </intent-filter>
+            </receiver>
+        </application>
 	```
 
 2. your gradle file:
