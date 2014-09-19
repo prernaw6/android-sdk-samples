@@ -59,8 +59,7 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 	        super.onCreate();        
 	
 	
-	        ScannerConfiguration scannerConfiguration = new ScannerConfiguration(this);
-	        scannerConfiguration.setExitEventDelay(15000);
+	        ScannerConfiguration scannerConfiguration = new ScannerConfiguration(this);	        
 	        ResolverConfiguration resolverConfiguration = new ResolverConfiguration(this, "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d");
 	        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(this);
 	
