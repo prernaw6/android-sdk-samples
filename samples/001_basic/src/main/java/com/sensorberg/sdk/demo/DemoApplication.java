@@ -20,7 +20,6 @@ public class DemoApplication extends Application
 
 
 		ScannerConfiguration scannerConfiguration = new ScannerConfiguration(this);
-		scannerConfiguration.setExitEventDelay(15000);
         ResolverConfiguration resolverConfiguration = new ResolverConfiguration(this, "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d");
         PresenterConfiguration presenterConfiguration = new PresenterConfiguration(this);
 
