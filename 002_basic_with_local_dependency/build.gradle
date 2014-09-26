@@ -33,6 +33,6 @@ android {
 }
 
 dependencies {
-    compile project(':samples/003_local_dependency')
+    compile project(':003_local_dependency')
     compile fileTree(dir: 'libs', include: '*.jar')
 }
