@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/apiKey_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/apply_api_token_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/apiKey_editText"
+        android:layout_gravity="center_horizontal"
+        android:text="Apply ApiToken" />
+
+    <Button
+        android:id="@+id/scan_qr_code_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/apply_api_token_button"
+        android:layout_gravity="center_horizontal"
+        android:text="scan API token from QR code" />
+
+    <Button
+        android:id="@+id/testNotificatinButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/scan_qr_code_button"
+        android:text="Test Foreground Notification" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testNotificatinButton"
+        android:id="@+id/enableforegroundNotificationsCheckBox"
+        android:text="Enable Foreground Notifications" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/sdk_version_textField"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/version_textField"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+</RelativeLayout>

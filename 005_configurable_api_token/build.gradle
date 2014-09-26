@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.12.+'
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
+    }
+}
+
+apply plugin: 'com.android.application'
+
+def PLAYSTORE_RELEASE = "PLAYSTORE_RELEASE"
+def HOCKEYAPP_APP_TOKEN = "HOCKEYAPP_APP_TOKEN"
+def BOOLEAN = "boolean"
+def STRING = "String"
+def TRUE = "true"
+def FALSE = "false"
+def NULL = "null"
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion "20.0"
+
+    defaultConfig {
+        versionCode System.getenv("BUILD_NUMBER") as Integer ?: 9999
+        versionName "1.0.2"
+        buildConfigField BOOLEAN, PLAYSTORE_RELEASE, FALSE
+        buildConfigField STRING, HOCKEYAPP_APP_TOKEN, NULL
+        minSdkVersion 18
+        targetSdkVersion 19
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    def isReleaseAble = System.getenv("SENSORBERG_KEYSTORE_PATH") != null
+    def hockeyAppToken = System.getenv("HOCKEYAPP_APP_TOKEN")
+
+    signingConfigs {
+        if (isReleaseAble) {
+            release {
+                storeFile file(System.getenv("SENSORBERG_KEYSTORE_PATH"))
+                storePassword System.getenv("SENSORBERG_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("SENSORBERG_KEYSTORE_KEY_ALIAS")
+                keyPassword System.getenv("SENSORBERG_KEYSTORE_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+        }
+        release {
+            applicationIdSuffix ".release"
+            if (isReleaseAble) {
+                signingConfig signingConfigs.release
+            }
+            if (hockeyAppToken != null) {
+                buildConfigField STRING, HOCKEYAPP_APP_TOKEN, "\"${hockeyAppToken}\""
+            }
+        }
+
+        playStore.initWith(release)
+
+        alpha.initWith(release)
+        alpha.applicationIdSuffix ".alpha"
+    }
+}
+
+
+dependencies {
+    compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'me.dm7.barcodescanner:zxing:1.4'
+    compile 'net.hockeyapp.android:HockeySDK:3.0.2'
+
+    compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.6.0.1')
+}
