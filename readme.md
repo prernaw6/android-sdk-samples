@@ -8,25 +8,11 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 
 ##Integration:
 
-1. your manifest file:
-
+1. your manifest file:<br/> 
+do nothing (our aar has all the neccesary declarations, and gradle simply merges them)
+If this seems to easy, and you want to vibrate when a beacon is nearby, add the vibrate permission:
 	```xml
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.BLUETOOTH" />
-	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-	<uses-permission android:name="android.permission.VIBRATE"/>
-	
-	<application>
-	    <!-- your activities... -->
-	    <receiver
-                android:name="com.sensorberg.sdk.background.ScannerBroadcastReceiver"
-                android:enabled="false" >
-                <intent-filter>
-                    <action android:name="android.intent.action.USER_PRESENT" />
-                    <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
-                </intent-filter>
-            </receiver>
-        </application>
+		<uses-permission android:name="android.permission.VIBRATE"/>
 	```
 
 2. your gradle file:
@@ -40,10 +26,7 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 	}
 	
 	dependencies {
-        compile 'com.sensorberg.sdk:sensorberg-sdk:+'
-        compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:+')/*{
-            exclude group: 'com.sensorberg.sdk', module: 'sensorberg-sdk'
-        }*/
+        compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:+')
     }
 	```
 
@@ -53,21 +36,18 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 	public class DemoApplication extends Application
 	{ 
 	    private SensorbergApplicationBootstrapper boot;
+	    private BackgroundDetector callback;
 	
 	    @Override
 	    public void onCreate() {
 	        super.onCreate();        
 	
 	
-	        ScannerConfiguration scannerConfiguration = new ScannerConfiguration(this);	        
-	        ResolverConfiguration resolverConfiguration = new ResolverConfiguration(this, "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d");
-	        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(this);
-	
-	
-	        //bootstrap the complete integration, keep a local reference to the bootstrapper
-	        boot =  new SensorbergApplicationBootstrapper()
-	                .bootstrapApplication(scannerConfiguration, resolverConfiguration, presenterConfiguration)
-	                .bootstrapBackgroundScanning();
+	        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
+	        boot = new SensorbergApplicationBootstrapper(this, "your-api-key", foreGroundNotifications, presenterConfiguration);
+
+	        BackgroundDetector callback = new BackgroundDetector(boot);
+	        registerActivityLifecycleCallbacks(callback);
 		}
 	}
 	```
@@ -80,6 +60,7 @@ browse the samples folder to see basic integrations of the SDK
 	── 002_basic_with_local_dependency
 	── 003_local_dependency
 	── 004_basic_with_jar_dependency
+	── 005_configurable_api_token
 
 ##001_basic sample
 
@@ -96,4 +77,10 @@ This is not recommended, since you need to **manually** add the sdk dependencies
 
 ##004_basic_with_jar_dependency
 
-This project shows that you can also unpack the aar and only reference the included jar file. We are currently not including any resourse files in our SDK, so there is no disadvantage with this method, still, you will propably run into problems in the future. This sample also relies on you to manually add the SDK dependencies as jar files. This method is also **not** recommended
+This project shows that you can also unpack the aar and only reference the included jar file. We are currently not including any resourse files in our SDK, so there is no disadvantage with this method, still, you will propably run into problems in the future. This sample also relies on you to manually add the SDK dependencies as jar files. This method is also **not** recommended. You must also merge the manifest manually and all our declarations. Basically you need to manually merge all the entries from the aar file. Again, please don´t try this at home.
+
+##005_configurable_api_token
+
+This is our internal dogfooding app. We´re extending it with all the API features we are exposing to you. Feel free to use it as a sample for all kinds of integrations. It also incorporates a QR scanner so you can scan your API token directly from the website if you want to get started really quick.
+
+This sample also highlights the implementation of a custom interface in your application for the content associated with a beacon.
