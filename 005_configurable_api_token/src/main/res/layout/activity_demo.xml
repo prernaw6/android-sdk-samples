@@ -41,6 +41,19 @@
         android:id="@+id/enableforegroundNotificationsCheckBox"
         android:text="Enable Foreground Notifications" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enableforegroundNotificationsCheckBox"
+        android:id="@+id/enableVibratonOnNotificationsCheckBox"
+        android:text="Enable Vibration Alert on Notifications" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enableVibratonOnNotificationsCheckBox"
+        android:id="@+id/verboseADBLogging"
+        android:text="Verbose Logging via ADB" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"

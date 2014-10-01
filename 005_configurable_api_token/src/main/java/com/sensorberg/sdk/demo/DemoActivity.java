@@ -1,7 +1,6 @@
 package com.sensorberg.sdk.demo;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +12,11 @@ import android.widget.Toast;
 import com.sensorberg.near.BaseActivity;
 import com.sensorberg.near.BuildConfig;
 import com.sensorberg.near.R;
+import com.sensorberg.sdk.Logger;
 import com.sensorberg.sdk.action.UriMessageAction;
 import com.sensorberg.sdk.bootstrapper.ActionActivity;
 import com.sensorberg.sdk.near.SharedPreferencesHelper;
+import com.sensorberg.sdk.presenter.PresenterConfiguration;
 import com.sensorberg.sdk.resolver.BeaconEvent;
 
 import net.hockeyapp.android.CrashManager;
@@ -41,6 +42,9 @@ public class DemoActivity extends BaseActivity {
     @InjectView(R.id.enableforegroundNotificationsCheckBox)
     CheckBox enableforegroundNotificationsCheckBox;
 
+    @InjectView(R.id.enableVibratonOnNotificationsCheckBox)
+    CheckBox enableVibrationOnNotificationsCheckBox;
+
 
     SharedPreferencesHelper sharedPreferencesHelper;
 
@@ -62,18 +66,34 @@ public class DemoActivity extends BaseActivity {
         }
         sdkVersionTextView.setText("sdk: " + com.sensorberg.sdk.BuildConfig.VERSION_NAME + "-SNAPSHOT");
 
-        enableforegroundNotificationsCheckBox.setChecked(getSharedPreferences("me" , MODE_PRIVATE).getBoolean("foreground_notifications", false));
+        enableforegroundNotificationsCheckBox.setChecked(sharedPreferencesHelper.foreGroundNotificationsEnabled());
+        enableVibrationOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.vibrationOnNotificationsEnabled());
 
     }
 
     @OnCheckedChanged(R.id.enableforegroundNotificationsCheckBox)
-    void setEnableforegroundNotificationsCheckBoxChecked(){
-        SharedPreferences sharedPreferences = getSharedPreferences("me", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        boolean value = enableforegroundNotificationsCheckBox.isChecked();
-        editor.putBoolean("foreground_notifications", value);
-        editor.commit();
+    void setEnableforegroundNotificationsCheckBoxChecked(boolean value){
+        sharedPreferencesHelper.setForegroundNotificationEnabled(value);
         DemoApplication.getInstance().boot.setPresentationDelegationEnabled(value);
+    }
+
+    @OnCheckedChanged(R.id.enableVibratonOnNotificationsCheckBox)
+    void setEnableVibrateOnNotificationsCheckBoxChecked(boolean value){
+        sharedPreferencesHelper.setEnableVibrationOnNotifications(value);
+        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
+        if (value) {
+            presenterConfiguration.setVibrationPattern(DemoApplication.VIBRATION_PATTERN);
+        }
+        DemoApplication.getInstance().boot.updatePresenterConfiguration(presenterConfiguration);
+    }
+
+    @OnCheckedChanged(R.id.verboseADBLogging)
+    void verboseADBLoggingEnabled(boolean value){
+        if (value) {
+            Logger.enableVerboseLogging();
+        } else {
+            Logger.log = Logger.QUIET_LOG;
+        }
     }
 
     @OnClick(R.id.apply_api_token_button)
