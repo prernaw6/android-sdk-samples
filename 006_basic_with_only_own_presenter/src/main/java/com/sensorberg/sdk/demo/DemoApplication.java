@@ -20,6 +20,9 @@ public class DemoApplication extends Application
 		super.onCreate();
         Log.d(TAG, "onCreate application");
         //bootstrap the complete integration, keep a local reference to the bootstrapper
-        boot =  new MyCustomBootStrapper(this, "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d");
+        boot =  new MyCustomBootStrapper(this, "36e8adb02ead475a856d36326850e9e8c772c613de6fe5a76c9b4c78ac16d40d");
+        //you are in charge of making the app scan with the foreground or background configuration,
+        //we´e assuming you want the allways foreground (fast but more battery intense) mode
+        boot.hostApplicationInForeground();
 	}
 }
