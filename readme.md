@@ -72,7 +72,7 @@ The recommended way to integrate our SDK
 
 ##002_basic_with_local_dependency sample
 
-A reference for a local reference of the aar reference of the SDK. It used the module **003_local_dependency** which statically declares the aar as an artifact. This sample follows the 
+A reference for a local reference of the aar reference of the SDK. It used the module **003_local_dependency** which statically declares the aar as an artifact. This sample follows a sample by Google.
 
 This is not recommended, since you need to **manually** add the sdk dependencies as well. Currently we depend on **com.loopj.android:android-async-http**.
 
