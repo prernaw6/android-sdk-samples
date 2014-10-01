@@ -61,6 +61,7 @@ browse the samples folder to see basic integrations of the SDK
 	── 003_local_dependency
 	── 004_basic_with_jar_dependency
 	── 005_configurable_api_token
+	── 006_basic_with_only_own_presenter
 
 ##001_basic sample
 
@@ -84,3 +85,11 @@ This project shows that you can also unpack the aar and only reference the inclu
 This is our internal dogfooding app. We´re extending it with all the API features we are exposing to you. Feel free to use it as a sample for all kinds of integrations. It also incorporates a QR scanner so you can scan your API token directly from the website if you want to get started really quick.
 
 This sample also highlights the implementation of a custom interface in your application for the content associated with a beacon.
+
+Check this if you want to see how to turn logging on and off for debugging purposes.
+
+###006_basic_with_only_own_presenter
+
+Sample that shows how to handle all Beacon Actions in your application.
+
+
