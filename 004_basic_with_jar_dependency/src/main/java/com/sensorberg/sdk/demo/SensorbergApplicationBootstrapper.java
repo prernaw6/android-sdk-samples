@@ -1,6 +1,7 @@
 package com.sensorberg.sdk.demo;
 
 import com.sensorberg.sdk.cluster.BeaconCluster;
+import com.sensorberg.sdk.demo.demoFour.R;
 import com.sensorberg.sdk.exception.SdkException;
 import com.sensorberg.sdk.presenter.Presentation;
 import com.sensorberg.sdk.presenter.PresentationConfiguration;
