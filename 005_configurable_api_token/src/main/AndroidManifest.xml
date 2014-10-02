@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- Vibration permission actually required by this app-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true" />
@@ -28,10 +31,6 @@
         <!-- HockeyApp activities, since they don´t use aar distribution-->
         <activity android:name="net.hockeyapp.android.UpdateActivity" />
         <activity android:name="com.sensorberg.sdk.demo.ScannerActivity"/>
-
-        <!-- Vibration permission actually required by this app-->
-        <uses-permission android:name="android.permission.VIBRATE" />
-
 
         <!-- this is not part of the bootstrapper manifest. It is a really ugly activity...-->
         <activity android:name="com.sensorberg.sdk.bootstrapper.ActionActivity"
