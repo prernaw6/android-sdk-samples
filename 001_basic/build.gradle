@@ -12,10 +12,6 @@ repositories {
     maven {
         url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
     }
-    //please ignore this, this is our internal maven repo
-    maven {
-        url "http://172.17.12.103:8881/nexus/content/repositories/snapshots"
-    }
 }
 
 apply plugin: 'com.android.application'
