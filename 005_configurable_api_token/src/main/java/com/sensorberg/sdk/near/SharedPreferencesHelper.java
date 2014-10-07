@@ -4,7 +4,8 @@ import android.content.SharedPreferences;
 
 public class SharedPreferencesHelper {
 
-    private static final String DEFAULT_API_KEY = "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d";
+    public static final String DEMO_ACCOUNT_API_KEY = "4b99af9f0edf71b1e40690f29a429a80da427122bb6285f58cf79285818666e3";
+    private static final String DEFAULT_API_KEY = DEMO_ACCOUNT_API_KEY;
     public static final String API_KEY = "com.sensorberg.apiKey";
     public static final String VIBRATION_ON_NOTIFICATIONS = "com.sensorberg.vibration_on_notifications";
     public static final String FOREGROUND_NOTIFICATIONS = "com.sensorberg.foreground_notifications";

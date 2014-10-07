@@ -19,12 +19,20 @@
         android:text="Apply ApiToken" />
 
     <Button
-        android:id="@+id/scan_qr_code_button"
+        android:id="@+id/apply_demo_token_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/apply_api_token_button"
         android:layout_gravity="center_horizontal"
-        android:text="scan API token from QR code" />
+        android:text="Reset to use Demo Token" />
+
+    <Button
+        android:id="@+id/scan_qr_code_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/apply_demo_token_button"
+        android:layout_gravity="center_horizontal"
+        android:text="Scan API token from QR code" />
 
     <Button
         android:id="@+id/testNotificatinButton"
