@@ -5,5 +5,9 @@ allprojects {
             url "http://172.17.12.103:8881/nexus/content/repositories/snapshots"
         }
     }
+    configurations.all {
+        // check for updates every build
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
 }
 
