@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
 import com.sensorberg.near.BaseActivity;
 import com.sensorberg.near.BuildConfig;
 import com.sensorberg.near.R;
@@ -53,6 +54,8 @@ public class DemoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_demo);
+
+        AsyncHttpClient client = new AsyncHttpClient();
 
         ButterKnife.inject(this);
         sharedPreferencesHelper = DemoApplication.getInstance().helper;
