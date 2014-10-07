@@ -79,6 +79,9 @@ This is not recommended, since you need to **manually** add the sdk dependencies
 If you want to proceeed using the jar dependenceny:
 * **YOU** must download the latest aar artifact
 * **YOU** must check if all dependencies are fullfilled by checking the dependencies in the pom file
+* Do this **ALSO** for the bootstrapper!!!
+ 
+This sample only shows, that using the local aar dependency is technically possible. If you know what you are doing please proceed, otherwise **pretty please** use the aar dependency*. Therefore this project is **not maintained** to the latest SDK and bootstrapper version!!!
 
 
 ##004_basic_with_jar_dependency
@@ -92,6 +95,8 @@ If you want to proceeed using the jar dependenceny:
 * **YOU must** check if all dependencies are fullfilled by checking the dependencies in the pom file
 * **YOU must** merge the manifest from the aar
 * **YOU must** merge all other possible resources from the aar (please check the [aar reference](http://tools.android.com/tech-docs/new-build-system/aar-format))
+ 
+*This sample only shows, that using the jar dependency is technically possible. If you know what you are doing please proceed, otherwise **pretty please** use the aar dependency.* Therefore this project is **not maintained** to the latest SDK and bootstrapper version!!!
 
 ##005_configurable_api_token
 
