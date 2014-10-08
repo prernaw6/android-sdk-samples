@@ -36,5 +36,5 @@ android {
 }
 
 dependencies {
-    compile 'com.sensorberg.sdk:sensorberg-sdk:0.8.0-SNAPSHOT@aar'
+    compile 'com.sensorberg.sdk:sensorberg-sdk:0.8.0-SNAPSHOT'
 }

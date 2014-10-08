@@ -62,6 +62,7 @@ browse the samples folder to see basic integrations of the SDK
 	── 004_basic_with_jar_dependency
 	── 005_configurable_api_token
 	── 006_basic_with_only_own_presenter
+	-- 007_basic_with_only_own_presenter_and_foreground_background_awareness
 
 ##001_basic sample
 
@@ -76,9 +77,27 @@ A reference for a local reference of the aar reference of the SDK. It used the m
 
 This is not recommended, since you need to **manually** add the sdk dependencies as well. Currently we depend on **com.loopj.android:android-async-http**.
 
+If you want to proceeed using the jar dependenceny:
+* **YOU** must download the latest aar artifact
+* **YOU** must check if all dependencies are fullfilled by checking the dependencies in the pom file
+* Do this **ALSO** for the bootstrapper!!!
+ 
+*This sample only shows, that using the local aar dependency is technically possible. If you know what you are doing please proceed, otherwise* **pretty please** *use the aar dependency.* Therefore this project is **not maintained** to the latest SDK and bootstrapper version!!!
+
+
 ##004_basic_with_jar_dependency
 
 This project shows that you can also unpack the aar and only reference the included jar file. We are currently not including any resourse files in our SDK, so there is no disadvantage with this method, still, you will propably run into problems in the future. This sample also relies on you to manually add the SDK dependencies as jar files. This method is also **not** recommended. You must also merge the manifest manually and all our declarations. Basically you need to manually merge all the entries from the aar file. Again, please don´t try this at home.
+
+If you want to proceeed using the jar dependenceny:
+* **YOU must** download the latest aar artifact **REGULARLY**
+* **YOU must** unpack the aar file
+* **YOU must** extract the jar file
+* **YOU must** check if all dependencies are fullfilled by checking the dependencies in the pom file
+* **YOU must** merge the manifest from the aar
+* **YOU must** merge all other possible resources from the aar (please check the [aar reference](http://tools.android.com/tech-docs/new-build-system/aar-format))
+ 
+*This sample only shows, that using the jar dependency is technically possible. If you know what you are doing please proceed, otherwise* **pretty please** *use the aar dependency.* Therefore this project is **not maintained** to the latest SDK and bootstrapper version!!!
 
 ##005_configurable_api_token
 
@@ -92,4 +111,7 @@ Check this if you want to see how to turn logging on and off for debugging purpo
 
 Sample that shows how to handle all Beacon Actions in your application.
 
+###007_basic_with_only_own_presenter_and_foreground_background_awareness
+
+This sample leaves the presentation to the host app, but foreground and background changes are resprected by the SDK to save power.
 

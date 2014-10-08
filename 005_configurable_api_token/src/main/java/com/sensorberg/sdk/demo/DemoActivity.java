@@ -27,6 +27,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class DemoActivity extends BaseActivity {
     private static final String TAG = DemoActivity.class.getSimpleName();
@@ -99,14 +101,19 @@ public class DemoActivity extends BaseActivity {
         }
     }
 
+    @OnClick(R.id.apply_demo_token_button)
+    void applyDemoToken(){
+        setApiToken(SharedPreferencesHelper.DEMO_ACCOUNT_API_KEY);
+        applyApiToken();
+    }
+
     @OnClick(R.id.apply_api_token_button)
     void applyApiToken() {
         String newApiToken = apiKeyEditText.getText().toString();
         sharedPreferencesHelper.setAPIKey(newApiToken);
 
         DemoApplication.getInstance().boot.changeAPIToken(newApiToken);
-        Toast.makeText(this, "api token applied", Toast.LENGTH_SHORT).show();
-
+        Crouton.showText(this, "api token applied", Style.INFO);
     }
 
     @OnClick(R.id.testNotificatinButton)
@@ -130,8 +137,9 @@ public class DemoActivity extends BaseActivity {
                     String text = data.getStringExtra(ScannerActivity.TEXT);
                     if (text != null && text.length() == 64) {
                         setApiToken(text);
+                        Crouton.showText(this, "Scanned sucessfully. Now apply the token", Style.INFO);
                     } else {
-                        Toast.makeText(this, "QR code was not an API token", Toast.LENGTH_LONG).show();
+                        Crouton.showText(this, "QR code was not an API token", Style.ALERT);
                     }
                 }
                 break;
