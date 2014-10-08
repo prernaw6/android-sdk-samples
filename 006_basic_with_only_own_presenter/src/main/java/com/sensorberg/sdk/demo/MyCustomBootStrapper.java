@@ -23,8 +23,8 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
                     UriMessageAction uriAction = (UriMessageAction) beaconEvent.getAction();
                     Log.d("DEMO", "I´m seeing an action for beacon " + beaconEvent.getBeaconId().toTraditionalString()  + "\n"
                             + " the action has the following title: " + uriAction.getTitle() + "\n"
-                            + " the action has the following title: " + uriAction.getContent()  + "\n"
-                            + " the action has the following title: " + uriAction.getUri()  + "\n");
+                            + " the action has the following content: " + uriAction.getContent()  + "\n"
+                            + " the action has the following uri: " + uriAction.getUri()  + "\n");
                     break;
             }
 
