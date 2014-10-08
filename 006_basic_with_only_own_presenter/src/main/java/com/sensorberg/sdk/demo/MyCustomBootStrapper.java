@@ -10,9 +10,12 @@ import com.sensorberg.sdk.resolver.BeaconEvent;
 
 public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
 
+    private static final boolean DELEGATE_EVERYTHING = true;
+    private static final PresenterConfiguration IRRELEVANT = new PresenterConfiguration(1);
+
     public MyCustomBootStrapper(Application application, String apiToken) {
         //the presenterconfiguration is irrelevant since we want to delegate all calls to this instance
-        super(application, apiToken, true, new PresenterConfiguration(1));
+        super(application, apiToken, DELEGATE_EVERYTHING, IRRELEVANT);
     }
 
     @Override

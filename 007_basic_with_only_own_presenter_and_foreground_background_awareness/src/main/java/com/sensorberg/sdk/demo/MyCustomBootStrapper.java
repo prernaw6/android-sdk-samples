@@ -12,9 +12,15 @@ import com.sensorberg.sdk.resolver.BeaconEvent;
 
 public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
 
+    private static final boolean DELEGATE_EVERYTHING = true;
+    private static final PresenterConfiguration IRRELEVANT = new PresenterConfiguration(1);
+
+    //flag used to keep track of the state of the app
+    private boolean isInForeground = false;
+
     public MyCustomBootStrapper(Application application, String apiToken) {
         //the presenterconfiguration is irrelevant since we want to delegate all calls to this instance
-        super(application, apiToken, true, new PresenterConfiguration(1));
+        super(application, apiToken, DELEGATE_EVERYTHING, IRRELEVANT);
     }
 
     @Override
@@ -26,7 +32,8 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
                     Log.d("DEMO", "I´m seeing an action for beacon " + beaconEvent.getBeaconId().toTraditionalString()  + "\n"
                             + " the action has the following title: " + uriAction.getTitle() + "\n"
                             + " the action has the following content: " + uriAction.getContent()  + "\n"
-                            + " the action has the following uri: " + uriAction.getUri()  + "\n");
+                            + " the action has the following uri: " + uriAction.getUri()  + "\n"
+                            + " the app is in the " + (isInForeground ? "foreground" : "background") + "so you might want react. If the app is in the background, a android.app.Notification might be good idea."  + "\n");
                     break;
             }
 
@@ -37,9 +44,16 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
     //we don´t want to unsubsubscribe from the presentation delegation, so we override this method
     @Override
     public void hostApplicationInBackground() {
+        isInForeground = false;
         Logger.log.applicationStateChanged("hostApplicationInBackground");
         if (serviceMessenger != null){
             sendEmptyMessage(SensorbergService.MSG_APPLICATION_IN_BACKGROUND);
         }
+    }
+
+    @Override
+    public void hostApplicationInForeground() {
+        this.isInForeground = true;
+        super.hostApplicationInForeground();
     }
 }

@@ -20,6 +20,6 @@ public class DemoActivity extends Activity
 		super.onCreate(savedInstanceState);
         textView = new TextView(this);
 		setContentView(textView);
-        textView.setText("all events are sent to the logcat using code ourside of the SDK");
+        textView.setText("all events are sent to the logcat using code ourside of the SDK, the scan times are also changed if the app is in the background...");
 	}
 }
