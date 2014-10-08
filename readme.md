@@ -42,12 +42,15 @@ If this seems to easy, and you want to vibrate when a beacon is nearby, add the 
 	    public void onCreate() {
 	        super.onCreate();        
 	
-	
-	        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
-	        boot = new SensorbergApplicationBootstrapper(this, "your-api-key", foreGroundNotifications, presenterConfiguration);
+	        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                if (plattform.isBluetoothLowEnergySupported()) {
+                    PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
+                    boot = new SensorbergApplicationBootstrapper(this, "your-api-key", foreGroundNotifications, presenterConfiguration);
 
-	        BackgroundDetector callback = new BackgroundDetector(boot);
-	        registerActivityLifecycleCallbacks(callback);
+                    BackgroundDetector callback = new BackgroundDetector(boot);
+                    registerActivityLifecycleCallbacks(callback);
+                }
+            }
 		}
 	}
 	```
@@ -63,6 +66,10 @@ browse the samples folder to see basic integrations of the SDK
 	── 005_configurable_api_token
 	── 006_basic_with_only_own_presenter
 	-- 007_basic_with_only_own_presenter_and_foreground_background_awareness
+	-- 008_basic_api_level_14
+	-- 009_basic_api_level_9
+
+Please read the notes of each sample carfully!
 
 ##001_basic sample
 
@@ -114,4 +121,18 @@ Sample that shows how to handle all Beacon Actions in your application.
 ###007_basic_with_only_own_presenter_and_foreground_background_awareness
 
 This sample leaves the presentation to the host app, but foreground and background changes are resprected by the SDK to save power.
+
+####008_basic_api_level_14
+
+This samples shows, what you should do, if your app is minSdkVersion 14
+
+**YOU SHOULD PROPABLY FOLLOW THIS EXAMPLE ON TOP OF THE OTHER SAMPLES IN ALL YOUR PROJECTS IF YOU ARE minSdkVersion 14**
+
+####009_basic_api_level_9
+
+This samples shows, what you should do, if your app is MinApiLevel 9
+
+**YOU SHOULD PROPABLY FOLLOW THIS EXAMPLE ON TOP OF THE OTHER SAMPLES IN ALL YOUR PROJECTS IF YOU ARE minSdkVersion 9**
+
+
 
