@@ -62,6 +62,7 @@ browse the samples folder to see basic integrations of the SDK
 	── 004_basic_with_jar_dependency
 	── 005_configurable_api_token
 	── 006_basic_with_only_own_presenter
+	-- 007_basic_with_only_own_presenter_and_foreground_background_awareness
 
 ##001_basic sample
 
@@ -110,4 +111,7 @@ Check this if you want to see how to turn logging on and off for debugging purpo
 
 Sample that shows how to handle all Beacon Actions in your application.
 
+###007_basic_with_only_own_presenter_and_foreground_background_awareness
+
+This sample leaves the presentation to the host app, but foreground and background changes are resprected by the SDK to save power.
 
