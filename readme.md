@@ -45,7 +45,8 @@ If this seems to easy, and you want to vibrate when a beacon is nearby, add the 
 	        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 if (plattform.isBluetoothLowEnergySupported()) {
                     PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
-                    boot = new SensorbergApplicationBootstrapper(this, "your-api-key", foreGroundNotifications, presenterConfiguration);
+                    boot = new SensorbergApplicationBootstrapper(this, foreGroundNotifications);
+                    boot.connectToService("your-api-key", presenterConfiguration);
 
                     BackgroundDetector callback = new BackgroundDetector(boot);
                     registerActivityLifecycleCallbacks(callback);
@@ -113,6 +114,8 @@ This is our internal dogfooding app. We´re extending it with all the API featur
 This sample also highlights the implementation of a custom interface in your application for the content associated with a beacon.
 
 Check this if you want to see how to turn logging on and off for debugging purposes.
+
+This sample also highlights how to completely disable a the SDK when it is running. **If you wish to disable the service permanently, store and persist this flag in your app.** Instanciating a bootstrapper automatically starts and enables the service!!!
 
 ###006_basic_with_only_own_presenter
 

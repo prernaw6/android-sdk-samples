@@ -9,6 +9,7 @@ public class SharedPreferencesHelper {
     public static final String API_KEY = "com.sensorberg.apiKey";
     public static final String VIBRATION_ON_NOTIFICATIONS = "com.sensorberg.vibration_on_notifications";
     public static final String FOREGROUND_NOTIFICATIONS = "com.sensorberg.foreground_notifications";
+    public static final String SERVICE_DISABLED = "com.sensorberg.service disabled";
 
     private SharedPreferences preferences;
 
@@ -46,5 +47,13 @@ public class SharedPreferencesHelper {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, value);
         editor.commit();
+    }
+
+    public boolean isServiceDisabled() {
+        return preferences.getBoolean(SERVICE_DISABLED, false);
+    }
+
+    public void setServiceEnabled(boolean value){
+        saveValueForKey(value,SERVICE_DISABLED );
     }
 }

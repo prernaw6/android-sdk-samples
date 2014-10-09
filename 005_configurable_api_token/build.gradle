@@ -84,5 +84,11 @@ dependencies {
     compile 'net.hockeyapp.android:HockeySDK:3.0.2'
     compile 'de.keyboardsurfer.android.widget:crouton:1.8.5@aar'
 
-    compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.7.2')
+    compile 'com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.7.3'
+
+//    compile 'com.sensorberg.sdk:sensorberg-sdk:0.7.2-SNAPSHOT@aar'
+//    compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.7.3-SNAPSHOT@aar'){
+//        exclude group: 'com.sensorberg.sdk', module: 'sensorberg-sdk'
+//    }
+//    compile 'com.loopj.android:android-async-http:1.4.5'
 }

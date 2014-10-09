@@ -126,6 +126,18 @@ public class DemoActivity extends BaseActivity {
         startActivityForResult(new Intent(this, ScannerActivity.class), ScannerActivity.SCAN_QR);
     }
 
+    @OnClick(R.id.enableServiceButton)
+    void enableService(){
+        sharedPreferencesHelper.setServiceEnabled(true);
+        DemoApplication.getInstance().boot.enableService(getApplicationContext());
+    }
+
+    @OnClick(R.id.disableServiceButton)
+    void disableService(){
+        sharedPreferencesHelper.setServiceEnabled(false);
+        DemoApplication.getInstance().boot.disableServiceCompletely(getApplicationContext());
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {

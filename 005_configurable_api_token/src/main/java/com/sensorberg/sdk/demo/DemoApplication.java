@@ -4,8 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import com.sensorberg.near.R;
+import com.sensorberg.sdk.Logger;
 import com.sensorberg.sdk.bootstrapper.BackgroundDetector;
-import com.sensorberg.sdk.bootstrapper.SensorbergApplicationBootstrapper;
 import com.sensorberg.sdk.near.SharedPreferencesHelper;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 
@@ -15,10 +15,14 @@ public class DemoApplication extends Application
     private static final String TAG = "DemoApplication";
     public static final long[] VIBRATION_PATTERN = {0, 120,120, 120,120, 120,3*120, 3*120,120 ,120,120, 120,120, 120};
 
-    public SensorbergApplicationBootstrapper boot;
+    public NearApplicationBootstrapper boot;
     private BackgroundDetector callback;
     public SharedPreferencesHelper helper;
     private static DemoApplication instance;
+
+    static {
+        Logger.enableVerboseLogging();
+    }
 
     @Override
     public void onCreate() {
@@ -35,7 +39,12 @@ public class DemoApplication extends Application
             presenterConfiguration.setVibrationPattern(VIBRATION_PATTERN);
         }
 
-        boot = new SensorbergApplicationBootstrapper(this, helper.getAPIKey(), foreGroundNotifications, presenterConfiguration);
+        boot = new NearApplicationBootstrapper(this, helper.getAPIKey(), foreGroundNotifications, presenterConfiguration);
+
+        //only do this if the service should start!!! if the user opted out, don´t execute this line!!!
+        if(!helper.isServiceDisabled()) {
+            boot.connectToService();
+        }
 
         callback = new BackgroundDetector(boot);
         registerActivityLifecycleCallbacks(callback);
