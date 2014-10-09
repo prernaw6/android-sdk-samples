@@ -122,13 +122,13 @@ Sample that shows how to handle all Beacon Actions in your application.
 
 This sample leaves the presentation to the host app, but foreground and background changes are resprected by the SDK to save power.
 
-####008_basic_api_level_14
+###008_basic_api_level_14
 
 This samples shows, what you should do, if your app is minSdkVersion 14
 
 **YOU SHOULD PROPABLY FOLLOW THIS EXAMPLE ON TOP OF THE OTHER SAMPLES IN ALL YOUR PROJECTS IF YOU ARE minSdkVersion 14**
 
-####009_basic_api_level_9
+###009_basic_api_level_9
 
 This samples shows, what you should do, if your app is MinApiLevel 9
 
