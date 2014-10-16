@@ -69,7 +69,7 @@ public class DemoActivity extends BaseActivity {
             versionTextView.setVisibility(View.VISIBLE);
             versionTextView.setText("app:" + BuildConfig.PACKAGE_NAME + ":" + BuildConfig.VERSION_CODE + ":" + BuildConfig.VERSION_NAME);
         }
-        sdkVersionTextView.setText("sdk: " + com.sensorberg.sdk.BuildConfig.VERSION_NAME + "-SNAPSHOT");
+        sdkVersionTextView.setText("sdk: " + com.sensorberg.sdk.BuildConfig.VERSION_NAME);
 
         enableforegroundNotificationsCheckBox.setChecked(sharedPreferencesHelper.foreGroundNotificationsEnabled());
         enableVibrationOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.vibrationOnNotificationsEnabled());
@@ -127,6 +127,18 @@ public class DemoActivity extends BaseActivity {
     @OnClick(R.id.scan_qr_code_button)
     void scanQRCode() {
         startActivityForResult(new Intent(this, ScannerActivity.class), ScannerActivity.SCAN_QR);
+    }
+
+    @OnClick(R.id.enableServiceButton)
+    void enableService(){
+        sharedPreferencesHelper.setServiceEnabled(true);
+        DemoApplication.getInstance().boot.enableService(getApplicationContext());
+    }
+
+    @OnClick(R.id.disableServiceButton)
+    void disableService(){
+        sharedPreferencesHelper.setServiceEnabled(false);
+        DemoApplication.getInstance().boot.disableServiceCompletely(getApplicationContext());
     }
 
     @Override

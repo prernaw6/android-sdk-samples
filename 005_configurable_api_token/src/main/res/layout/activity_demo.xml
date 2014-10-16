@@ -41,11 +41,31 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/scan_qr_code_button"
         android:text="Test Foreground Notification" />
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/serviceButtons"
+        android:layout_below="@+id/testNotificatinButton"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/disableServiceButton"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Disable Service" />
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/enableServiceButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Enable Service" />
+        </LinearLayout>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/testNotificatinButton"
+        android:layout_below="@id/serviceButtons"
         android:id="@+id/enableforegroundNotificationsCheckBox"
         android:text="Enable Foreground Notifications" />
 
@@ -60,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/enableVibratonOnNotificationsCheckBox"
         android:id="@+id/verboseADBLogging"
+        android:checked="true"
         android:text="Verbose Logging via ADB" />
 
     <LinearLayout
