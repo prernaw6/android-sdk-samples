@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sensorberg.near">
+    package="com.sensorberg.near" >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- Vibration permission actually required by this app-->
+    <!-- Vibration permission actually required by this app -->
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-feature
@@ -28,15 +28,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- HockeyApp activities, since they don´t use aar distribution-->
+        <!-- HockeyApp activities, since they don´t use aar distribution -->
         <activity android:name="net.hockeyapp.android.UpdateActivity" />
-        <activity android:name="com.sensorberg.sdk.demo.ScannerActivity"/>
+        <activity android:name="com.sensorberg.sdk.demo.ScannerActivity" />
 
-        <!-- this is not part of the bootstrapper manifest. It is a really ugly activity...-->
-        <activity android:name="com.sensorberg.sdk.bootstrapper.ActionActivity"
-            android:theme="@android:style/Theme.Dialog"/>
-
+        <!-- this is not part of the bootstrapper manifest. It is a really ugly activity... -->
+        <activity
+            android:name="com.sensorberg.sdk.bootstrapper.ActionActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.sensorberg.sdk.demo.ShowSettingsActivity"
+            android:label="@string/title_activity_show_settings" >
+        </activity>
     </application>
-
 
 </manifest>
