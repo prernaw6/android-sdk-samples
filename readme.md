@@ -2,6 +2,8 @@
 
 #Welcome to the samples of the Sensorberg Android SDK
 
+Before continuing please consider answering this [questionaire](https://docs.google.com/a/sensorberg.com/forms/d/1EvQFPimFyLQBzoWtGNr83Iovx0T6UlnLJqTur5Tz8Kw/viewform)
+
 #howto integrate the SDK
 
 We recommend gradle builds and will only document the gradle setup. If you rely on legacy build systems, check the samples, there might be a project that shows how to integrate it with any IDE/build system.
