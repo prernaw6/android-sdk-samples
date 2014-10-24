@@ -13,9 +13,8 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
     private static final boolean DELEGATE_EVERYTHING = true;
     private static final PresenterConfiguration IRRELEVANT = new PresenterConfiguration(1);
 
-    public MyCustomBootStrapper(Application application, String apiToken) {
-        //the presenterconfiguration is irrelevant since we want to delegate all calls to this instance
-        super(application, apiToken, DELEGATE_EVERYTHING, IRRELEVANT);
+    public MyCustomBootStrapper(Application application) {
+        super(application, true);
     }
 
     @Override
@@ -32,5 +31,10 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
             }
 
         }
+    }
+
+    public void connectToService(String s) {
+        //the presenterconfiguration is irrelevant since we want to delegate all calls to this instance
+        super.connectToService(s, IRRELEVANT);
     }
 }
