@@ -32,9 +32,6 @@
         <activity android:name="net.hockeyapp.android.UpdateActivity" />
         <activity android:name="com.sensorberg.sdk.demo.ScannerActivity"/>
 
-
-
-
         <!-- this is not part of the bootstrapper manifest. It is a really ugly activity...-->
         <activity android:name="com.sensorberg.sdk.bootstrapper.ActionActivity"
             android:theme="@android:style/Theme.Dialog"/>
