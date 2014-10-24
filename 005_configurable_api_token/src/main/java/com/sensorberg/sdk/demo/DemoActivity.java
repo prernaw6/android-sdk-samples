@@ -119,7 +119,7 @@ public class DemoActivity extends BaseActivity {
     @OnClick(R.id.testNotificatinButton)
     void testnotification(){
         BeaconEvent beaconEvent = new BeaconEvent.Builder()
-                .withAction(new UriMessageAction("hello", "world", "http://hel.lo"))
+                .withAction(new UriMessageAction("hello", "world", "http://hel.lo", 0L))
                 .build();
         startActivity(ActionActivity.intentFor(this, beaconEvent));
     }
