@@ -8,7 +8,7 @@ import com.sensorberg.sdk.presenter.PresenterConfiguration;
 
 public class NearApplicationBootstrapper extends SensorbergApplicationBootstrapper {
 
-    private final PresenterConfiguration presenterConfiguration;
+    public final PresenterConfiguration presenterConfiguration;
     private final String apiKey;
 
     public NearApplicationBootstrapper(Application application, String apiKey, boolean foreGroundNotifications, PresenterConfiguration presenterConfiguration) {

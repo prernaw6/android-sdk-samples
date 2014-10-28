@@ -89,6 +89,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/enableVibratonOnNotificationsCheckBox"
+        android:id="@+id/enableLEDOnNotificationsCheckBox"
+        android:text="Enable LED Alert on Notifications" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enableLEDOnNotificationsCheckBox"
         android:id="@+id/verboseADBLogging"
         android:checked="true"
         android:text="Verbose Logging via ADB" />

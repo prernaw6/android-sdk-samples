@@ -10,6 +10,7 @@ public class SharedPreferencesHelper {
     public static final String VIBRATION_ON_NOTIFICATIONS = "com.sensorberg.vibration_on_notifications";
     public static final String FOREGROUND_NOTIFICATIONS = "com.sensorberg.foreground_notifications";
     public static final String SERVICE_DISABLED = "com.sensorberg.service disabled";
+    private static final String LED_ON_NOTIFICATIONS = "com.sensorberg.led_on_notifications";
 
     private SharedPreferences preferences;
 
@@ -43,6 +44,11 @@ public class SharedPreferencesHelper {
         saveValueForKey(value, FOREGROUND_NOTIFICATIONS);
     }
 
+    public void setLedOnNotificationsEnabled(boolean value) {
+        saveValueForKey(value, LED_ON_NOTIFICATIONS);
+    }
+
+
     private void saveValueForKey(boolean value, String key) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, value);
@@ -55,5 +61,9 @@ public class SharedPreferencesHelper {
 
     public void setServiceDisabled(boolean value){
         saveValueForKey(value,SERVICE_DISABLED );
+    }
+
+    public boolean ledOnNotificationsEnabled() {
+        return preferences.getBoolean(LED_ON_NOTIFICATIONS, false);
     }
 }

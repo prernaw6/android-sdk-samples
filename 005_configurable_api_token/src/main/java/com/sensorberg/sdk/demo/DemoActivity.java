@@ -1,6 +1,7 @@
 package com.sensorberg.sdk.demo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import com.sensorberg.sdk.Logger;
 import com.sensorberg.sdk.action.UriMessageAction;
 import com.sensorberg.sdk.bootstrapper.ActionActivity;
 import com.sensorberg.sdk.near.SharedPreferencesHelper;
+import com.sensorberg.sdk.presenter.NotificationLightsConfiguration;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 import com.sensorberg.sdk.resolver.BeaconEvent;
 
@@ -50,6 +52,9 @@ public class DemoActivity extends BaseActivity {
     @InjectView(R.id.enableVibratonOnNotificationsCheckBox)
     CheckBox enableVibrationOnNotificationsCheckBox;
 
+    @InjectView(R.id.enableLEDOnNotificationsCheckBox)
+    CheckBox enableLEDOnNotificationsCheckBox;
+
 
     SharedPreferencesHelper sharedPreferencesHelper;
 
@@ -61,8 +66,6 @@ public class DemoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_demo);
-
-        AsyncHttpClient client = new AsyncHttpClient();
 
         ButterKnife.inject(this);
         sharedPreferencesHelper = DemoApplication.getInstance().helper;
@@ -78,6 +81,7 @@ public class DemoActivity extends BaseActivity {
 
         enableforegroundNotificationsCheckBox.setChecked(sharedPreferencesHelper.foreGroundNotificationsEnabled());
         enableVibrationOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.vibrationOnNotificationsEnabled());
+        enableLEDOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.ledOnNotificationsEnabled());
 
         disableServiceSwitch.setChecked(!sharedPreferencesHelper.isServiceDisabled());
         disableServiceSwitchCheckedChanged();
@@ -89,12 +93,28 @@ public class DemoActivity extends BaseActivity {
         DemoApplication.getInstance().boot.setPresentationDelegationEnabled(value);
     }
 
+    @OnCheckedChanged(R.id.enableLEDOnNotificationsCheckBox)
+    void enableLEDOnNotificationsCheckBoxChecked(boolean value){
+        PresenterConfiguration presenterConfiguration = DemoApplication.getInstance().boot.presenterConfiguration;
+        if (value) {
+            presenterConfiguration.setNotificationLightsConfiguration(DemoApplication.LIGHTS_PATTERN);
+        }
+        else{
+            presenterConfiguration.setNotificationLightsConfiguration(null);
+        }
+        DemoApplication.getInstance().boot.updatePresenterConfiguration(presenterConfiguration);
+        sharedPreferencesHelper.setLedOnNotificationsEnabled(value);
+    }
+
     @OnCheckedChanged(R.id.enableVibratonOnNotificationsCheckBox)
     void setEnableVibrateOnNotificationsCheckBoxChecked(boolean value){
         sharedPreferencesHelper.setEnableVibrationOnNotifications(value);
-        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
+        PresenterConfiguration presenterConfiguration = DemoApplication.getInstance().boot.presenterConfiguration;
         if (value) {
             presenterConfiguration.setVibrationPattern(DemoApplication.VIBRATION_PATTERN);
+        }
+        else{
+            presenterConfiguration.setVibrationPattern(new long[]{});
         }
         DemoApplication.getInstance().boot.updatePresenterConfiguration(presenterConfiguration);
     }
