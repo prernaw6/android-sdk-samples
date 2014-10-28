@@ -8,8 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.sensorberg.near.BaseActivity;
@@ -53,6 +53,9 @@ public class DemoActivity extends BaseActivity {
 
     SharedPreferencesHelper sharedPreferencesHelper;
 
+    @InjectView(R.id.disableServiceSwitch)
+    Switch disableServiceSwitch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,8 @@ public class DemoActivity extends BaseActivity {
         enableforegroundNotificationsCheckBox.setChecked(sharedPreferencesHelper.foreGroundNotificationsEnabled());
         enableVibrationOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.vibrationOnNotificationsEnabled());
 
+        disableServiceSwitch.setChecked(!sharedPreferencesHelper.isServiceDisabled());
+        disableServiceSwitchCheckedChanged();
     }
 
     @OnCheckedChanged(R.id.enableforegroundNotificationsCheckBox)
@@ -101,6 +106,28 @@ public class DemoActivity extends BaseActivity {
         } else {
             Logger.log = Logger.QUIET_LOG;
         }
+    }
+
+    @OnCheckedChanged(R.id.disableServiceSwitch)
+    void disableServiceSwitchCheckedChanged(){
+        if(disableServiceSwitch.isChecked()){
+            enableService();
+        }
+        else{
+            disableService();
+        }
+        View[] views = new View[]{apiKeyEditText, versionTextView, sdkVersionTextView, enableforegroundNotificationsCheckBox, enableVibrationOnNotificationsCheckBox,
+                findViewById(R.id.apply_api_token_button),
+                findViewById(R.id.apply_demo_token_button),
+                findViewById(R.id.scan_qr_code_button),
+                findViewById(R.id.testNotificatinButton)};
+
+        for (View view : views) {
+            view.setEnabled(disableServiceSwitch.isChecked());
+        }
+
+
+
     }
 
     @OnClick(R.id.apply_demo_token_button)
@@ -133,13 +160,13 @@ public class DemoActivity extends BaseActivity {
 
     @OnClick(R.id.enableServiceButton)
     void enableService(){
-        sharedPreferencesHelper.setServiceEnabled(true);
+        sharedPreferencesHelper.setServiceDisabled(false);
         DemoApplication.getInstance().boot.enableService(getApplicationContext());
     }
 
     @OnClick(R.id.disableServiceButton)
     void disableService(){
-        sharedPreferencesHelper.setServiceEnabled(false);
+        sharedPreferencesHelper.setServiceDisabled(true);
         DemoApplication.getInstance().boot.disableServiceCompletely(getApplicationContext());
     }
 

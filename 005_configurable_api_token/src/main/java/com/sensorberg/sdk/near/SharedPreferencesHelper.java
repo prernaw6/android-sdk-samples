@@ -46,14 +46,14 @@ public class SharedPreferencesHelper {
     private void saveValueForKey(boolean value, String key) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public boolean isServiceDisabled() {
         return preferences.getBoolean(SERVICE_DISABLED, false);
     }
 
-    public void setServiceEnabled(boolean value){
+    public void setServiceDisabled(boolean value){
         saveValueForKey(value,SERVICE_DISABLED );
     }
 }
