@@ -44,6 +44,7 @@ public class ShowSettingsActivity extends Activity {
         Crouton.showText(this, "Settings should be displayed now.", Style.CONFIRM);
         Plattform platform = new AndroidPlattform(this);
         Settings settings = new Settings(platform, platform.getSettingsSharedPrefs());
+        settings.restoreValuesFromPreferences();
 
         Date date = new Date(System.currentTimeMillis());
         DateFormat dateFormat = android.text.format.DateFormat.getTimeFormat(getApplicationContext());
