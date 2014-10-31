@@ -4,9 +4,10 @@ import android.app.Application;
 import android.content.Context;
 
 import com.sensorberg.sdk.bootstrapper.SensorbergApplicationBootstrapper;
+import com.sensorberg.sdk.bootstrapper.SensorbergApplicationBootstrapperImpl;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 
-public class NearApplicationBootstrapper extends SensorbergApplicationBootstrapper {
+public class NearApplicationBootstrapper extends SensorbergApplicationBootstrapperImpl {
 
     public final PresenterConfiguration presenterConfiguration;
     private final String apiKey;

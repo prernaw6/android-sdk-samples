@@ -56,7 +56,7 @@ public class SharedPreferencesHelper {
     }
 
     public boolean isServiceDisabled() {
-        return preferences.getBoolean(SERVICE_DISABLED, false);
+        return preferences.getBoolean(SERVICE_DISABLED, true);
     }
 
     public void setServiceDisabled(boolean value){

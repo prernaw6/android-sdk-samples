@@ -4,8 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <Button
+        android:id="@+id/startServiceForTheFirstTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Start Service for the first time" />
     <EditText
+        android:layout_below="@+id/startServiceForTheFirstTime"
         android:id="@+id/apiKey_editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -55,17 +61,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/serviceButtons"
         android:layout_below="@+id/disableServiceSwitch"
+        android:visibility="gone"
         android:orientation="horizontal">
         <Button
             android:id="@+id/disableServiceButton"
             android:layout_width="fill_parent"
             android:layout_weight="1"
-            android:visibility="gone"
             android:layout_height="wrap_content"
             android:text="Disable Service" />
         <Button
             android:layout_weight="1"
-            android:visibility="gone"
             android:id="@+id/enableServiceButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

@@ -1,7 +1,6 @@
 package com.sensorberg.sdk.demo;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.sensorberg.near.BaseActivity;
 import com.sensorberg.near.BuildConfig;
 import com.sensorberg.near.R;
@@ -20,7 +18,6 @@ import com.sensorberg.sdk.Logger;
 import com.sensorberg.sdk.action.UriMessageAction;
 import com.sensorberg.sdk.bootstrapper.ActionActivity;
 import com.sensorberg.sdk.near.SharedPreferencesHelper;
-import com.sensorberg.sdk.presenter.NotificationLightsConfiguration;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 import com.sensorberg.sdk.resolver.BeaconEvent;
 
@@ -84,7 +81,7 @@ public class DemoActivity extends BaseActivity {
         enableLEDOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.ledOnNotificationsEnabled());
 
         disableServiceSwitch.setChecked(!sharedPreferencesHelper.isServiceDisabled());
-        disableServiceSwitchCheckedChanged();
+        disableServiceSwitchCheckedChanged(disableServiceSwitch.isChecked());
     }
 
     @OnCheckedChanged(R.id.enableforegroundNotificationsCheckBox)
@@ -119,6 +116,12 @@ public class DemoActivity extends BaseActivity {
         DemoApplication.getInstance().boot.updatePresenterConfiguration(presenterConfiguration);
     }
 
+    @OnClick(R.id.startServiceForTheFirstTime)
+    void startServiceForTheFirstTime(){
+        DemoApplication.getInstance().startSensorbergServiceForFirstTime();
+        disableServiceSwitch.setChecked(true);
+    }
+
     @OnCheckedChanged(R.id.verboseADBLogging)
     void verboseADBLoggingEnabled(boolean value){
         if (value) {
@@ -129,11 +132,10 @@ public class DemoActivity extends BaseActivity {
     }
 
     @OnCheckedChanged(R.id.disableServiceSwitch)
-    void disableServiceSwitchCheckedChanged(){
-        if(disableServiceSwitch.isChecked()){
+    void disableServiceSwitchCheckedChanged(boolean checked) {
+        if (checked) {
             enableService();
-        }
-        else{
+        } else {
             disableService();
         }
         View[] views = new View[]{apiKeyEditText, versionTextView, sdkVersionTextView, enableforegroundNotificationsCheckBox, enableVibrationOnNotificationsCheckBox,
@@ -143,11 +145,8 @@ public class DemoActivity extends BaseActivity {
                 findViewById(R.id.testNotificatinButton)};
 
         for (View view : views) {
-            view.setEnabled(disableServiceSwitch.isChecked());
+            view.setEnabled(checked);
         }
-
-
-
     }
 
     @OnClick(R.id.apply_demo_token_button)
@@ -252,15 +251,16 @@ public class DemoActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(this, ShowSettingsActivity.class));
-            return true;
+        switch (id){
+            case R.id.action_settings: {
+                startActivity(new Intent(this, ShowSettingsActivity.class));
+                return true;
+            }
+            case R.id.action_show_more: {
+                findViewById(R.id.serviceButtons).setVisibility(View.VISIBLE);
+                return true;
+            }
         }
 
         return super.onOptionsItemSelected(item);

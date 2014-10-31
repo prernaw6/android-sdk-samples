@@ -47,17 +47,16 @@ public class DemoApplication extends Application
 
         boot = new NearApplicationBootstrapper(this, helper.getAPIKey(), foreGroundNotifications, presenterConfiguration);
 
-        //only do this if the service should start!!! if the user opted out, don´t execute this line!!!
-        if(!helper.isServiceDisabled()) {
-            boot.connectToService();
-        }
-
         callback = new BackgroundDetector(boot);
         registerActivityLifecycleCallbacks(callback);
     }
 
     static DemoApplication getInstance(){
         return instance;
+    }
+
+    public void startSensorbergServiceForFirstTime(){
+        boot.connectToService();
     }
 
 }
