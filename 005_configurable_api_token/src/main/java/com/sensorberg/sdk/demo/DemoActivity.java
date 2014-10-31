@@ -1,6 +1,7 @@
 package com.sensorberg.sdk.demo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -8,8 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.sensorberg.near.BaseActivity;
@@ -19,6 +20,7 @@ import com.sensorberg.sdk.Logger;
 import com.sensorberg.sdk.action.UriMessageAction;
 import com.sensorberg.sdk.bootstrapper.ActionActivity;
 import com.sensorberg.sdk.near.SharedPreferencesHelper;
+import com.sensorberg.sdk.presenter.NotificationLightsConfiguration;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 import com.sensorberg.sdk.resolver.BeaconEvent;
 
@@ -50,16 +52,20 @@ public class DemoActivity extends BaseActivity {
     @InjectView(R.id.enableVibratonOnNotificationsCheckBox)
     CheckBox enableVibrationOnNotificationsCheckBox;
 
+    @InjectView(R.id.enableLEDOnNotificationsCheckBox)
+    CheckBox enableLEDOnNotificationsCheckBox;
+
 
     SharedPreferencesHelper sharedPreferencesHelper;
+
+    @InjectView(R.id.disableServiceSwitch)
+    Switch disableServiceSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_demo);
-
-        AsyncHttpClient client = new AsyncHttpClient();
 
         ButterKnife.inject(this);
         sharedPreferencesHelper = DemoApplication.getInstance().helper;
@@ -75,7 +81,10 @@ public class DemoActivity extends BaseActivity {
 
         enableforegroundNotificationsCheckBox.setChecked(sharedPreferencesHelper.foreGroundNotificationsEnabled());
         enableVibrationOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.vibrationOnNotificationsEnabled());
+        enableLEDOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.ledOnNotificationsEnabled());
 
+        disableServiceSwitch.setChecked(!sharedPreferencesHelper.isServiceDisabled());
+        disableServiceSwitchCheckedChanged();
     }
 
     @OnCheckedChanged(R.id.enableforegroundNotificationsCheckBox)
@@ -84,12 +93,28 @@ public class DemoActivity extends BaseActivity {
         DemoApplication.getInstance().boot.setPresentationDelegationEnabled(value);
     }
 
+    @OnCheckedChanged(R.id.enableLEDOnNotificationsCheckBox)
+    void enableLEDOnNotificationsCheckBoxChecked(boolean value){
+        PresenterConfiguration presenterConfiguration = DemoApplication.getInstance().boot.presenterConfiguration;
+        if (value) {
+            presenterConfiguration.setNotificationLightsConfiguration(DemoApplication.LIGHTS_PATTERN);
+        }
+        else{
+            presenterConfiguration.setNotificationLightsConfiguration(null);
+        }
+        DemoApplication.getInstance().boot.updatePresenterConfiguration(presenterConfiguration);
+        sharedPreferencesHelper.setLedOnNotificationsEnabled(value);
+    }
+
     @OnCheckedChanged(R.id.enableVibratonOnNotificationsCheckBox)
     void setEnableVibrateOnNotificationsCheckBoxChecked(boolean value){
         sharedPreferencesHelper.setEnableVibrationOnNotifications(value);
-        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
+        PresenterConfiguration presenterConfiguration = DemoApplication.getInstance().boot.presenterConfiguration;
         if (value) {
             presenterConfiguration.setVibrationPattern(DemoApplication.VIBRATION_PATTERN);
+        }
+        else{
+            presenterConfiguration.setVibrationPattern(new long[]{});
         }
         DemoApplication.getInstance().boot.updatePresenterConfiguration(presenterConfiguration);
     }
@@ -101,6 +126,28 @@ public class DemoActivity extends BaseActivity {
         } else {
             Logger.log = Logger.QUIET_LOG;
         }
+    }
+
+    @OnCheckedChanged(R.id.disableServiceSwitch)
+    void disableServiceSwitchCheckedChanged(){
+        if(disableServiceSwitch.isChecked()){
+            enableService();
+        }
+        else{
+            disableService();
+        }
+        View[] views = new View[]{apiKeyEditText, versionTextView, sdkVersionTextView, enableforegroundNotificationsCheckBox, enableVibrationOnNotificationsCheckBox,
+                findViewById(R.id.apply_api_token_button),
+                findViewById(R.id.apply_demo_token_button),
+                findViewById(R.id.scan_qr_code_button),
+                findViewById(R.id.testNotificatinButton)};
+
+        for (View view : views) {
+            view.setEnabled(disableServiceSwitch.isChecked());
+        }
+
+
+
     }
 
     @OnClick(R.id.apply_demo_token_button)
@@ -133,13 +180,13 @@ public class DemoActivity extends BaseActivity {
 
     @OnClick(R.id.enableServiceButton)
     void enableService(){
-        sharedPreferencesHelper.setServiceEnabled(true);
+        sharedPreferencesHelper.setServiceDisabled(false);
         DemoApplication.getInstance().boot.enableService(getApplicationContext());
     }
 
     @OnClick(R.id.disableServiceButton)
     void disableService(){
-        sharedPreferencesHelper.setServiceEnabled(false);
+        sharedPreferencesHelper.setServiceDisabled(true);
         DemoApplication.getInstance().boot.disableServiceCompletely(getApplicationContext());
     }
 
