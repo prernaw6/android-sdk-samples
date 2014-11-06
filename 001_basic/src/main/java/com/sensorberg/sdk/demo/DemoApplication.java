@@ -9,8 +9,6 @@ import com.sensorberg.sdk.bootstrapper.BackgroundDetector;
 import com.sensorberg.sdk.bootstrapper.SensorbergApplicationBootstrapper;
 import com.sensorberg.sdk.demo.demoOne.R;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
-import com.sensorberg.sdk.resolver.ResolverConfiguration;
-import com.sensorberg.sdk.scanner.ScannerConfiguration;
 
 @SuppressWarnings("javadoc")
 public class DemoApplication extends Application

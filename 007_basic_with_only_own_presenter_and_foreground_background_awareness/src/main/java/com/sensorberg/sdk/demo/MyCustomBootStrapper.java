@@ -14,13 +14,19 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
 
     private static final boolean DELEGATE_EVERYTHING = true;
     private static final PresenterConfiguration IRRELEVANT = new PresenterConfiguration(1);
+    private final String apiToken;
 
     //flag used to keep track of the state of the app
     private boolean isInForeground = false;
 
     public MyCustomBootStrapper(Application application, String apiToken) {
         //the presenterconfiguration is irrelevant since we want to delegate all calls to this instance
-        super(application, apiToken, DELEGATE_EVERYTHING, IRRELEVANT);
+        super(application, DELEGATE_EVERYTHING);
+        this.apiToken = apiToken;
+    }
+
+    public void connectToService() {
+        super.connectToService(apiToken, IRRELEVANT);
     }
 
     @Override
