@@ -73,6 +73,9 @@ android {
 
         alpha.initWith(release)
         alpha.applicationIdSuffix ".alpha"
+
+        releaseCandidate.initWith(release)
+        alpha.applicationIdSuffix ".rc"
     }
 }
 
