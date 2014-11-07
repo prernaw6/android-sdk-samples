@@ -87,5 +87,5 @@ dependencies {
     compile 'net.hockeyapp.android:HockeySDK:3.0.2'
     compile 'de.keyboardsurfer.android.widget:crouton:1.8.5@aar'
 
-    compile 'com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.9.0-RC2'
+    compile 'com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.9.0-RC3'
 }

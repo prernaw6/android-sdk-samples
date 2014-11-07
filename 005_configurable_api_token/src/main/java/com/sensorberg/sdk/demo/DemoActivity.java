@@ -74,7 +74,7 @@ public class DemoActivity extends BaseActivity {
             versionTextView.setVisibility(View.VISIBLE);
             versionTextView.setText("app:" + BuildConfig.PACKAGE_NAME + ":" + BuildConfig.VERSION_CODE + ":" + BuildConfig.VERSION_NAME);
         }
-        sdkVersionTextView.setText("sdk: " + com.sensorberg.sdk.BuildConfig.VERSION_NAME);
+        sdkVersionTextView.setText("sdk: " + com.sensorberg.sdk.BuildConfig.VERSION_NAME + " bootstrapper:" + com.sensorberg.sdk.bootstrapper.BuildConfig.VERSION_NAME);
 
         enableforegroundNotificationsCheckBox.setChecked(sharedPreferencesHelper.foreGroundNotificationsEnabled());
         enableVibrationOnNotificationsCheckBox.setChecked(sharedPreferencesHelper.vibrationOnNotificationsEnabled());
