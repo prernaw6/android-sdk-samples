@@ -17,16 +17,12 @@ repositories {
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 21
     buildToolsVersion "20.0"
 
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 19
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_5
-            targetCompatibility JavaVersion.VERSION_1_5
-        }
+        targetSdkVersion 21
     }
 
     lintOptions {
@@ -36,5 +32,5 @@ android {
 }
 
 dependencies {
-    compile 'com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.+'
+    compile 'com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.8.2'
 }

@@ -20,8 +20,10 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
 
     public MyCustomBootStrapper(Application application, String apiToken) {
         //the presenterconfiguration is irrelevant since we want to delegate all calls to this instance
-        super(application, apiToken, DELEGATE_EVERYTHING, IRRELEVANT);
+        super(application, DELEGATE_EVERYTHING);
     }
+
+
 
     @Override
     public void presentBeaconEvent(BeaconEvent beaconEvent) {
