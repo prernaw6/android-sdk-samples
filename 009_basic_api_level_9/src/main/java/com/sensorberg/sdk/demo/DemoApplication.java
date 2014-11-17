@@ -39,7 +39,7 @@ public class DemoApplication extends Application
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             if (plattform.isBluetoothLowEnergySupported()) {
-                //continue as in the other samples
+                //continue as in sample 001
             }
         }
 	}

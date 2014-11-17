@@ -16,9 +16,7 @@ public class DemoApplication extends Application
 
     //show all internal logging in debug mode
     static {
-        if (BuildConfig.DEBUG) {
-            Logger.enableVerboseLogging();
-        }
+        Logger.enableVerboseLogging();
     }
 
     private BackgroundDetector detector;
@@ -30,6 +28,7 @@ public class DemoApplication extends Application
 
         //bootstrap the complete integration, keep a local reference to the bootstrapper
         boot =  new MyCustomBootStrapper(this, "36e8adb02ead475a856d36326850e9e8c772c613de6fe5a76c9b4c78ac16d40d");
+        boot.connectToService();
 
         boot.connectToService();
 

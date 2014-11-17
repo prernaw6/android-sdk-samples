@@ -28,7 +28,7 @@ If this seems to easy, and you want to vibrate when a beacon is nearby, add the 
 	}
 	
 	dependencies {
-        compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:+')
+        compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:<INSERT-THE-LATEST-RELEASE>')
     }
 	```
 
@@ -67,7 +67,7 @@ browse the samples folder to see basic integrations of the SDK
 	── 003_local_dependency
 	── 004_basic_with_jar_dependency
 	── 005_configurable_api_token
-	── 006_basic_with_only_own_presenter
+	── 006_basic_with_only_own_presenter [removed]
 	-- 007_basic_with_only_own_presenter_and_foreground_background_awareness
 	-- 008_basic_api_level_14
 	-- 009_basic_api_level_9
@@ -119,9 +119,11 @@ Check this if you want to see how to turn logging on and off for debugging purpo
 
 This sample also highlights how to completely disable a the SDK when it is running. **If you wish to disable the service permanently, store and persist this flag in your app.** Instanciating a bootstrapper automatically starts and enables the service!!!
 
-###006_basic_with_only_own_presenter
+###~~006_basic_with_only_own_presenter~~
 
-Sample that shows how to handle all Beacon Actions in your application.
+~~Sample that shows how to handle all Beacon Actions in your application.~~
+
+This sample was removed since it did not respect if the app is in the foreground or background. 
 
 ###007_basic_with_only_own_presenter_and_foreground_background_awareness
 
