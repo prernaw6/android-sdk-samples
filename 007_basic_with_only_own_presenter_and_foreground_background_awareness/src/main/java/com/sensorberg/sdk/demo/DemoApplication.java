@@ -19,9 +19,7 @@ public class DemoApplication extends Application
 
     //show all internal logging in debug mode
     static {
-        if (BuildConfig.DEBUG) {
-            Logger.enableVerboseLogging();
-        }
+        Logger.enableVerboseLogging();
     }
 
     private BackgroundDetector detector;

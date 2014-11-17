@@ -14,6 +14,7 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
 
     private static final PresenterConfiguration IRRELEVANT = new PresenterConfiguration(1);
     private static final boolean DELEGATE_EVERYTHING = true;
+    private static final String TAG = MyCustomBootStrapper.class.getSimpleName();
     private final String apiToken;
 
     //flag used to keep track of the state of the app
@@ -48,6 +49,7 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
     //we don´t want to unsubsubscribe from the presentation delegation, so we override this method
     @Override
     public void hostApplicationInBackground() {
+        Log.d(TAG, "hostApplicationInBackground");
         isInForeground = false;
         Logger.log.applicationStateChanged("hostApplicationInBackground");
         if (serviceMessenger != null){
@@ -58,10 +60,13 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
     //we only want to tell the SDK scanner to change the scanning cycles
     @Override
     public void hostApplicationInForeground() {
+
         this.isInForeground = true;
         if (serviceMessenger != null) {
+            Log.d(TAG, "hostApplicationInForeground sending to SDK");
             sendEmptyMessage(SensorbergService.MSG_APPLICATION_IN_FOREGROUND);
         }  else {
+            Log.d(TAG, "hostApplicationInForeground queue to SDK");
             hostApplicationInForegroundNotDelivered = true;
         }
     }
