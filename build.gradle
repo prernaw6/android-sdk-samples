@@ -1,9 +1,24 @@
 allprojects {
     repositories{
         mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
+        }
     }
     configurations.all {
         // check for updates every build
         resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.13.3'
+        classpath 'com.github.dcendents:android-maven-plugin:1.1'
     }
 }
