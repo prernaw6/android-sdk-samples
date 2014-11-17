@@ -12,8 +12,9 @@ import com.sensorberg.sdk.resolver.BeaconEvent;
 
 public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
 
-    private static final boolean DELEGATE_EVERYTHING = true;
     private static final PresenterConfiguration IRRELEVANT = new PresenterConfiguration(1);
+    private static final boolean DELEGATE_EVERYTHING = true;
+    private final String apiToken;
 
     //flag used to keep track of the state of the app
     private boolean isInForeground = false;
@@ -21,6 +22,7 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
     public MyCustomBootStrapper(Application application, String apiToken) {
         //the presenterconfiguration is irrelevant since we want to delegate all calls to this instance
         super(application, DELEGATE_EVERYTHING);
+        this.apiToken = apiToken;
     }
 
 
@@ -53,9 +55,27 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
         }
     }
 
+    //we only want to tell the SDK scanner to change the scanning cycles
     @Override
     public void hostApplicationInForeground() {
         this.isInForeground = true;
-        super.hostApplicationInForeground();
+        if (serviceMessenger != null) {
+            sendEmptyMessage(SensorbergService.MSG_APPLICATION_IN_FOREGROUND);
+        }  else {
+            hostApplicationInForegroundNotDelivered = true;
+        }
+    }
+
+    //we want to be extra sure and only allow this value to be set to false
+    @Override
+    public void setPresentationDelegationEnabled(boolean value) {
+        if (!value){
+            return;
+        }
+        super.setPresentationDelegationEnabled(value);
+    }
+
+    public void connectToService() {
+        super.connectToService(apiToken, IRRELEVANT);
     }
 }

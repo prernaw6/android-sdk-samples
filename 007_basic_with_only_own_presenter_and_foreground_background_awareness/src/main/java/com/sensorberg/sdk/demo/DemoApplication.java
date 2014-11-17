@@ -15,7 +15,7 @@ import com.sensorberg.sdk.scanner.ScannerConfiguration;
 public class DemoApplication extends Application
 {
     private static final String TAG = "DemoApplication";
-    private SensorbergApplicationBootstrapper boot;
+    private MyCustomBootStrapper boot;
 
     //show all internal logging in debug mode
     static {
@@ -33,6 +33,7 @@ public class DemoApplication extends Application
 
         //bootstrap the complete integration, keep a local reference to the bootstrapper
         boot =  new MyCustomBootStrapper(this, "36e8adb02ead475a856d36326850e9e8c772c613de6fe5a76c9b4c78ac16d40d");
+        boot.connectToService();
 
 
         //we still want a background detector, that tells the SDK to save power when the app is in the background
