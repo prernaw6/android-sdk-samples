@@ -44,15 +44,13 @@ If this seems to easy, and you want to vibrate when a beacon is nearby, add the 
 	    public void onCreate() {
 	        super.onCreate();        
 	
-	        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                if (plattform.isBluetoothLowEnergySupported()) {
-                    PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
-                    boot = new SensorbergApplicationBootstrapper(this);
-                    boot.connectToService("your-api-key", presenterConfiguration);
+	        if (plattform.hasMinimumAndroidRequirements() && plattform.isBluetoothLowEnergySupported()) {
+                PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
+                boot = new SensorbergApplicationBootstrapper(this);
+                boot.connectToService("your-api-key", presenterConfiguration);
 
-                    BackgroundDetector callback = new BackgroundDetector(boot);
-                    registerActivityLifecycleCallbacks(callback);
-                }
+                BackgroundDetector callback = new BackgroundDetector(boot);
+                registerActivityLifecycleCallbacks(callback);
             }
 		}
 	}
