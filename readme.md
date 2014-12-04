@@ -117,7 +117,7 @@ This sample also highlights the implementation of a custom interface in your app
 
 Check this if you want to see how to turn logging on and off for debugging purposes.
 
-This sample also highlights how to completely disable a the SDK when it is running. **If you wish to disable the service permanently, store and persist this flag in your app.** Instanciating a bootstrapper automatically starts and enables the service!!!
+This sample also highlights how to completely disable a the SDK when it is running. **If you wish to disable the service permanently, store and persist this flag in your app.** Instanciating a bootstrapper does not longer start the SDK, but the ```connectToService()```method does. Use the ```disableServiceCompletely```method accordingly to disable the Scanning, Auto-awakening...
 
 ###~~006_basic_with_only_own_presenter~~
 
