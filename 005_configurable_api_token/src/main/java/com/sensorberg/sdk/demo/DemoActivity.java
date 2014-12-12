@@ -75,7 +75,7 @@ public class DemoActivity extends BaseActivity {
 
         if (!BuildConfig.BUILD_TYPE.equalsIgnoreCase("playStore")) {
             versionTextView.setVisibility(View.VISIBLE);
-            versionTextView.setText("app:" + BuildConfig.PACKAGE_NAME + ":" + BuildConfig.VERSION_CODE + ":" + BuildConfig.VERSION_NAME);
+            versionTextView.setText("app:" + BuildConfig.APPLICATION_ID + ":" + BuildConfig.VERSION_CODE + ":" + BuildConfig.VERSION_NAME);
         }
         sdkVersionTextView.setText("sdk: " + com.sensorberg.sdk.BuildConfig.VERSION_NAME);
 

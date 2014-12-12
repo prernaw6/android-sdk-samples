@@ -9,8 +9,8 @@ def FALSE = "false"
 def NULL = "null"
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "20.0"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.1"
 
     defaultConfig {
         versionCode System.getenv("BUILD_NUMBER") as Integer ?: 9999
@@ -68,5 +68,5 @@ dependencies {
     compile 'net.hockeyapp.android:HockeySDK:3.5.0-b.4'
     compile 'de.keyboardsurfer.android.widget:crouton:1.8.5@aar'
 
-    compile 'com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.8.3'
+    compile 'com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:1.8.4'
 }
