@@ -12,36 +12,19 @@ import com.sensorberg.sdk.scanner.Scanner;
 @SuppressWarnings("javadoc")
 public class DemoActivity extends Activity
 {
-	Scanner		scanner		= Scanner.getInstance();
-	Resolver	resolver	= Resolver.getInstance();
-    private TextView textView;
 
     @Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-        textView = new TextView(this);
+        TextView textView = new TextView(this);
+        textView.setText("* This example only highlights the integration or the aar artifact in a separate project\n" +
+                "     * please don´t actually do this, as you still have to manually add all transitive dependencies\n" +
+                "     * of the sdk.\n" +
+                "     * \n" +
+                "     * use our github maven repository :)");
 		setContentView(textView);
 	}
 
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
 
-
-        //You might want to inform the user, that btle is not supported on this device and all cool iBeacon features will not be accessible.
-		if(!scanner.isBluetoothSupported()) {
-            textView.setText("BTLE not supported");
-            Toast.makeText(this, "BTLE not supported.", Toast.LENGTH_LONG).show();
-		}
-        else if(!scanner.isBluetoothActive()){
-            textView.setText("bluetooth is not active on this device");
-            try {
-                scanner.requestBluetoothActivation(this);
-            } catch (SdkException e) {
-                //we ignore that btle might not be supported by this device
-            }
-        }
-	}
 }

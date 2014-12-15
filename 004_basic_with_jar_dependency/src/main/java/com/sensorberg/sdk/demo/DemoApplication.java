@@ -10,23 +10,13 @@ import com.sensorberg.sdk.scanner.ScannerConfiguration;
 @SuppressWarnings("javadoc")
 public class DemoApplication extends Application
 {
-    private static final String TAG = "DemoApplication";
-    private SensorbergApplicationBootstrapper boot;
-
     @Override
 	public void onCreate() {
-		super.onCreate();
-        Log.d(TAG, "onCreate application");
+		//follow the code intetration of the current release, this sample only highlights that you
+		// can actually unzip the aar, copy the jar file, manually merge the manifest, manually
+		// transitively add all dependencies and run the SDK.
 
+        //BUT PLEASE DON`T ACTUALLY DO THIS!!! USE GRADLE!
 
-		ScannerConfiguration scannerConfiguration = new ScannerConfiguration(this);
-        ResolverConfiguration resolverConfiguration = new ResolverConfiguration(this, "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d");
-        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(this);
-
-
-        //bootstrap the complete integration, keep a local reference to the bootstrapper
-        boot =  new SensorbergApplicationBootstrapper()
-                .bootstrapApplication(scannerConfiguration, resolverConfiguration, presenterConfiguration)
-                .bootstrapBackgroundScanning();
 	}
 }

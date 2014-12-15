@@ -81,6 +81,8 @@ public void presentBeaconEvent(BeaconEvent beaconEvent) {
 ```
 We will add more custom actions in the future so prepare your code accordingly.
 
+
+
 #samples
 
 browse the samples folder to see basic integrations of the SDK
@@ -163,6 +165,4 @@ This samples shows, what you should do, if your app is minSdkVersion 14
 This samples shows, what you should do, if your app is MinApiLevel 9
 
 **YOU SHOULD PROPABLY FOLLOW THIS EXAMPLE ON TOP OF THE OTHER SAMPLES IN ALL YOUR PROJECTS IF YOU ARE minSdkVersion 9**
-
-
 
