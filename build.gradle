@@ -6,10 +6,10 @@ allprojects {
             url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
         }
     }
-    configurations.all {
-        // check for updates every build
-        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-    }
+
+    project.ext.sensorbergBootstrapperVersion = "1.8.4"
+    project.ext.buildToolsVersion = "21.1.1"
+    project.ext.compileSdkVersion = 21
 }
 
 buildscript {
@@ -19,6 +19,6 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:1.0.0'
-        classpath 'com.github.dcendents:android-maven-plugin:1.1'
+        classpath 'com.github.dcendents:android-maven-plugin:1.2'
     }
 }
