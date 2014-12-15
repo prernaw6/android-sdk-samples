@@ -37,10 +37,8 @@ public class DemoApplication extends Application
 
         plattform = new AndroidPlattform(getApplicationContext());
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            if (plattform.isBluetoothLowEnergySupported()) {
-                //continue as in sample 001
-            }
+        if (plattform.hasMinimumAndroidRequirements() && plattform.isBluetoothLowEnergySupported()) {
+            //continue as in sample 001
         }
 	}
 }
