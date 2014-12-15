@@ -13,48 +13,73 @@ We recommend gradle builds and will only document the gradle setup. If you rely 
 1. your manifest file:<br/> 
 do nothing (our aar has all the neccesary declarations, and gradle simply merges them)
 If this seems to easy, and you want to vibrate when a beacon is nearby, add the vibrate permission:
-	```xml
-		<uses-permission android:name="android.permission.VIBRATE"/>
-	```
+```xml
+	<uses-permission android:name="android.permission.VIBRATE"/>
+```
 
 2. your gradle file:
-
-	```groovy
-	repositories {
-	    mavenCentral()
-	    maven {
-	        url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
-	    }
-	}
-	
-	dependencies {
-        compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:<INSERT-THE-LATEST-RELEASE>')
+```groovy
+repositories {
+    mavenCentral()
+    maven {
+        url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
     }
-	```
+}
+
+dependencies {
+       compile ('com.sensorberg.sdk.bootstrapper:sensorberg-sdk-bootstrapper:<INSERT-THE-LATEST-RELEASE>')
+   }
+```
 
 3. Set up the SDK in your Application class:
 
-	```java
-	public class DemoApplication extends Application
-	{ 
-	    private SensorbergApplicationBootstrapper boot;
-	    private BackgroundDetector callback;
-	
-	    @Override
-	    public void onCreate() {
-	        super.onCreate();        
-	
-	        if (plattform.hasMinimumAndroidRequirements() && plattform.isBluetoothLowEnergySupported()) {
-                PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
-                boot = new SensorbergApplicationBootstrapper(this);
-                boot.connectToService("your-api-key", presenterConfiguration);
+```java
+public class DemoApplication extends Application
+{ 
+    private SensorbergApplicationBootstrapper boot;
+    private BackgroundDetector callback;
 
-                BackgroundDetector callback = new BackgroundDetector(boot);
-                registerActivityLifecycleCallbacks(callback);
-            }
-		}
+    @Override
+    public void onCreate() {
+        super.onCreate();        
+
+        if (plattform.hasMinimumAndroidRequirements() && plattform.isBluetoothLowEnergySupported()) {
+               PresenterConfiguration presenterConfiguration = new PresenterConfiguration(R.drawable.ic_launcher);
+               boot = new SensorbergApplicationBootstrapper(this);
+               boot.connectToService("your-api-key", presenterConfiguration);
+
+               BackgroundDetector callback = new BackgroundDetector(boot);
+               registerActivityLifecycleCallbacks(callback);
+           }
 	}
-	```
+}
+```
+
+#customizations:
+
+In 0.9 of the SDK we added the possibility to define different kinds of actions in the web interface. Please be aware of this and implement your custom actions accordingly:
+```java
+@Override
+public void presentBeaconEvent(BeaconEvent beaconEvent) {
+    if (beaconEvent.getAction() != null){
+        switch (beaconEvent.getAction().getType()){
+            case MESSAGE_URI:
+                UriMessageAction uriAction = (UriMessageAction)  beaconEvent.getAction();
+                //your code
+                break;
+            case MESSAGE_WEBSITE:
+                VisitWebsiteAction visitWebsiteAction = (VisitWebsiteAction)                      beaconEvent.getAction();
+                //your code
+                break;
+            case MESSAGE_IN_APP:
+                InAppAction inAppAction = (InAppAction) beaconEvent.getAction();
+                //your code
+                break;
+        }
+    }
+}
+```
+We will add more custom actions in the future so prepare your code accordingly.
 
 #samples
 
@@ -70,7 +95,7 @@ browse the samples folder to see basic integrations of the SDK
 	-- 008_basic_api_level_14
 	-- 009_basic_api_level_9
 
-Please read the notes of each sample carfully!
+**Please read the notes of each sample carefully!**
 
 ##001_basic sample
 
