@@ -1,6 +1,7 @@
 package com.sensorberg.sdk.demo;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +24,8 @@ import com.sensorberg.sdk.resolver.BeaconEvent;
 
 import net.hockeyapp.android.CrashManager;
 import net.hockeyapp.android.UpdateManager;
+
+import java.util.UUID;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -167,7 +170,7 @@ public class DemoActivity extends BaseActivity {
     @OnClick(R.id.testNotificatinButton)
     void testnotification(){
         BeaconEvent beaconEvent = new BeaconEvent.Builder()
-                .withAction(new UriMessageAction("hello", "world", "http://hel.lo", 0L))
+                .withAction(new UriMessageAction(UUID.randomUUID() ,"hello", "world", "http://hel.lo", 0L))
                 .build();
         startActivity(ActionActivity.intentFor(this, beaconEvent));
     }
