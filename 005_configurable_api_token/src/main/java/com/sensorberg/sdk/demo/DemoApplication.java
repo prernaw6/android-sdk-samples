@@ -4,10 +4,10 @@ import android.app.Application;
 import android.graphics.Color;
 import android.util.Log;
 
-import com.sensorberg.near.R;
+import com.sensorberg.demoFive.R;
+import com.sensorberg.demoFive.SharedPreferencesHelper;
 import com.sensorberg.sdk.Logger;
 import com.sensorberg.sdk.bootstrapper.BackgroundDetector;
-import com.sensorberg.sdk.near.SharedPreferencesHelper;
 import com.sensorberg.sdk.presenter.NotificationLightsConfiguration;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 

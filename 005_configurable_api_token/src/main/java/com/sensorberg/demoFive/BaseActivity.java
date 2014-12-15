@@ -1,4 +1,4 @@
-package com.sensorberg.near;
+package com.sensorberg.demoFive;
 
 import android.app.Activity;
 
