@@ -1,7 +1,6 @@
 package com.sensorberg.sdk.demo;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,13 +11,13 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.sensorberg.near.BaseActivity;
-import com.sensorberg.near.BuildConfig;
-import com.sensorberg.near.R;
+import com.sensorberg.demoFive.BaseActivity;
+import com.sensorberg.demoFive.BuildConfig;
+import com.sensorberg.demoFive.R;
+import com.sensorberg.demoFive.SharedPreferencesHelper;
 import com.sensorberg.sdk.Logger;
 import com.sensorberg.sdk.action.UriMessageAction;
 import com.sensorberg.sdk.bootstrapper.ActionActivity;
-import com.sensorberg.sdk.near.SharedPreferencesHelper;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 import com.sensorberg.sdk.resolver.BeaconEvent;
 

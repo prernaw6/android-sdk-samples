@@ -1,4 +1,4 @@
-package com.sensorberg.sdk.near;
+package com.sensorberg.demoFive;
 
 import android.content.SharedPreferences;
 

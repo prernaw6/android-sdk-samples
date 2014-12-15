@@ -1,17 +1,15 @@
 package com.sensorberg.sdk.demo;
 
 import android.app.Activity;
-import android.location.Location;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.sensorberg.near.R;
+import com.sensorberg.demoFive.R;
 import com.sensorberg.sdk.internal.AndroidPlattform;
 import com.sensorberg.sdk.internal.Plattform;
 import com.sensorberg.sdk.settings.Settings;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import butterknife.ButterKnife;
