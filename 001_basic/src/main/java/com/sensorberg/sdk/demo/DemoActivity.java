@@ -19,6 +19,7 @@ public class DemoActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
         textView = new TextView(this);
+        textView.setText("this is a very basic example...");
 		setContentView(textView);
 	}
 
