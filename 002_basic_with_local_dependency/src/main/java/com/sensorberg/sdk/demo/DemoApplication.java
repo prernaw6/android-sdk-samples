@@ -11,22 +11,12 @@ import com.sensorberg.sdk.scanner.ScannerConfiguration;
 public class DemoApplication extends Application
 {
     private static final String TAG = "DemoApplication";
-    private SensorbergApplicationBootstrapper boot;
 
-    @Override
-	public void onCreate() {
-		super.onCreate();
-        Log.d(TAG, "onCreate application");
-
-
-		ScannerConfiguration scannerConfiguration = new ScannerConfiguration(this);
-        ResolverConfiguration resolverConfiguration = new ResolverConfiguration(this, "f257de3b91d141aa93b6a9b39c97b83df257de3b91d141aa93b6a9b39c97b83d");
-        PresenterConfiguration presenterConfiguration = new PresenterConfiguration(this);
-
-
-        //bootstrap the complete integration, keep a local reference to the bootstrapper
-        boot =  new SensorbergApplicationBootstrapper()
-                .bootstrapApplication(scannerConfiguration, resolverConfiguration, presenterConfiguration)
-                .bootstrapBackgroundScanning();
-	}
+    /**
+     * This example only highlights the integration or the aar artifact in a separate project
+     * please don´t actually do this, as you still have to manually add all transitive dependencies
+     * of the sdk.
+     *
+     * use our github maven repository :)
+     */
 }

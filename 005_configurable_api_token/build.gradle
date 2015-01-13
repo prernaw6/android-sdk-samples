@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         versionCode System.getenv("BUILD_NUMBER") as Integer ?: 9999
-        versionName "1.0.3"
+        versionName "1.0.4"
         buildConfigField BOOLEAN, PLAYSTORE_RELEASE, FALSE
         buildConfigField STRING, HOCKEYAPP_APP_TOKEN, NULL
         minSdkVersion 18
@@ -57,6 +57,9 @@ android {
 
         alpha.initWith(release)
         alpha.applicationIdSuffix ".alpha"
+
+        releaseCandidate.initWith(release)
+        releaseCandidate.applicationIdSuffix ".rc"
     }
 }
 

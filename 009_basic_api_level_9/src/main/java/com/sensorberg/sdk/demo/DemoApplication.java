@@ -1,6 +1,5 @@
 package com.sensorberg.sdk.demo;
 
-import android.annotation.TargetApi;
 import android.app.Application;
 import android.os.Build;
 import android.util.Log;

@@ -5,7 +5,9 @@ import android.util.Log;
 
 import com.sensorberg.sdk.Logger;
 import com.sensorberg.sdk.SensorbergService;
+import com.sensorberg.sdk.action.InAppAction;
 import com.sensorberg.sdk.action.UriMessageAction;
+import com.sensorberg.sdk.action.VisitWebsiteAction;
 import com.sensorberg.sdk.bootstrapper.SensorbergApplicationBootstrapper;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 import com.sensorberg.sdk.resolver.BeaconEvent;
@@ -26,8 +28,6 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
         this.apiToken = apiToken;
     }
 
-
-
     @Override
     public void presentBeaconEvent(BeaconEvent beaconEvent) {
         if (beaconEvent.getAction() != null){
@@ -38,6 +38,22 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
                             + " the action has the following title: " + uriAction.getTitle() + "\n"
                             + " the action has the following content: " + uriAction.getContent()  + "\n"
                             + " the action has the following uri: " + uriAction.getUri()  + "\n"
+                            + " the app is in the " + (isInForeground ? "foreground" : "background") + "so you might want react. If the app is in the background, a android.app.Notification might be good idea."  + "\n");
+                    break;
+                case MESSAGE_WEBSITE:
+                    VisitWebsiteAction visitWebsiteAction = (VisitWebsiteAction) beaconEvent.getAction();
+                    Log.d("DEMO", "I´m seeing an action for beacon " + beaconEvent.getBeaconId().toTraditionalString()  + "\n"
+                            + " the action has the following subject: " + visitWebsiteAction.getSubject() + "\n"
+                            + " the action has the following body: " + visitWebsiteAction.getBody()  + "\n"
+                            + " the action has the following uri: " + visitWebsiteAction.getUri()  + "\n"
+                            + " the app is in the " + (isInForeground ? "foreground" : "background") + "so you might want react. If the app is in the background, a android.app.Notification might be good idea."  + "\n");
+                    break;
+                case MESSAGE_IN_APP:
+                    InAppAction inAppAction = (InAppAction) beaconEvent.getAction();
+                    Log.d("DEMO", "I´m seeing an action for beacon " + beaconEvent.getBeaconId().toTraditionalString()  + "\n"
+                            + " the action has the following subject: " + inAppAction.getSubject() + "\n"
+                            + " the action has the following body: " + inAppAction.getBody()  + "\n"
+                            + " the action has the following uri: " + inAppAction.getUri()  + "\n"
                             + " the app is in the " + (isInForeground ? "foreground" : "background") + "so you might want react. If the app is in the background, a android.app.Notification might be good idea."  + "\n");
                     break;
             }
@@ -52,23 +68,15 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
         Log.d(TAG, "hostApplicationInBackground");
         isInForeground = false;
         Logger.log.applicationStateChanged("hostApplicationInBackground");
-        if (serviceMessenger != null){
-            sendEmptyMessage(SensorbergService.MSG_APPLICATION_IN_BACKGROUND);
-        }
+        sendEmptyMessage(SensorbergService.MSG_APPLICATION_IN_BACKGROUND);
     }
 
     //we only want to tell the SDK scanner to change the scanning cycles
     @Override
     public void hostApplicationInForeground() {
-
         this.isInForeground = true;
-        if (serviceMessenger != null) {
-            Log.d(TAG, "hostApplicationInForeground sending to SDK");
-            sendEmptyMessage(SensorbergService.MSG_APPLICATION_IN_FOREGROUND);
-        }  else {
-            Log.d(TAG, "hostApplicationInForeground queue to SDK");
-            hostApplicationInForegroundNotDelivered = true;
-        }
+        Log.d(TAG, "hostApplicationInForeground sending to SDK");
+        sendEmptyMessage(SensorbergService.MSG_APPLICATION_IN_FOREGROUND);
     }
 
     //we want to be extra sure and only allow this value to be set to false

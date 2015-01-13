@@ -5,9 +5,12 @@ allprojects {
         maven {
             url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo";
         }
+        maven {
+            url "https://raw.github.com/sensorberg-dev/android-sdk/mvn-repo-release-candidates";
+        }
     }
 
-    project.ext.sensorbergBootstrapperVersion = "1.8.4"
+    project.ext.sensorbergBootstrapperVersion = "1.9.0"
     project.ext.buildToolsVersion = "21.1.1"
     project.ext.compileSdkVersion = 21
 }
