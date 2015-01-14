@@ -64,11 +64,11 @@ public void presentBeaconEvent(BeaconEvent beaconEvent) {
     if (beaconEvent.getAction() != null){
         switch (beaconEvent.getAction().getType()){
             case MESSAGE_URI:
-                UriMessageAction uriAction = (UriMessageAction)  beaconEvent.getAction();
+                UriMessageAction uriAction = (UriMessageAction) beaconEvent.getAction();
                 //your code
                 break;
             case MESSAGE_WEBSITE:
-                VisitWebsiteAction visitWebsiteAction = (VisitWebsiteAction)                      beaconEvent.getAction();
+                VisitWebsiteAction visitWebsiteAction = (VisitWebsiteAction) beaconEvent.getAction();
                 //your code
                 break;
             case MESSAGE_IN_APP:
