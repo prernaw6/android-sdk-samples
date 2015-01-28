@@ -43,18 +43,25 @@
 ####1.Aquire an authToken
 **POST** https://connect.sensorberg.com/api/user/login
 **Headers:**
+```
 Content-Type: application/x-www-form-urlencoded
+```
 **Body:**
+```
 email=<email>&password=<password>
+```
 
 responseBody.response.authToken -> copy this value
 
 ####2. Set your values
 **POST** https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/
 **Headers:**
+```
 Content-Type: application/json
 Authorization: <Auth-Token-FromLogin>
+```
 **Body:**
+```
 {
 	"scanner.exitTimeoutMillies" 		:  4001,
 	"scanner.foreGroundWaitTime" 	: 1000,
@@ -63,6 +70,7 @@ Authorization: <Auth-Token-FromLogin>
 	"scanner.backgroundWaitTime" 	: 1000,
 	"settings.updateTime" 			: 86400000, 
 }
+```
 
 **3. check if it worked**
 GET https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/
