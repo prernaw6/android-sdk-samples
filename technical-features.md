@@ -42,6 +42,7 @@
 ###Change Settings in the SDK
 ####1.Aquire an authToken
 **POST** ```https://connect.sensorberg.com/api/user/login```
+
 **Headers:**
 ```
 Content-Type: application/x-www-form-urlencoded
