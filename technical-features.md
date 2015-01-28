@@ -35,3 +35,34 @@
 	* configure the icon of the notification
 	* configure the [notification lights](http://developer.android.com/reference/android/app/Notification.Builder.html#setLights(int,%20int,%20int))
 * present an action in the host UI of your application. Anything except an [notification](http://developer.android.com/guide/topics/ui/notifiers/notifications.html) in the notification area is considered host UI.
+
+
+##Advanced features:
+
+###Change Settings in the SDK
+####1.Aquire an authToken
+**POST** https://connect.sensorberg.com/api/user/login
+**Headers:**
+Content-Type: application/x-www-form-urlencoded
+**Body:**
+email=<email>&password=<password>
+
+responseBody.response.authToken -> copy this value
+
+####2. Set your values
+**POST** https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/
+**Headers:**
+Content-Type: application/json
+Authorization: <Auth-Token-FromLogin>
+**Body:**
+{
+	"scanner.exitTimeoutMillies" 		:  4001,
+	"scanner.foreGroundWaitTime" 	: 1000,
+	"scanner.foreGroundScanTime" 	: 10001,
+	"scanner.backgroundScanTime" 	: 10001,
+	"scanner.backgroundWaitTime" 	: 1000,
+	"settings.updateTime" 			: 86400000, 
+}
+
+**3. check if it worked**
+GET https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/
