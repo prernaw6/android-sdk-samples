@@ -41,7 +41,7 @@
 
 ###Change Settings in the SDK
 ####1.Aquire an authToken
-**POST** https://connect.sensorberg.com/api/user/login
+**POST** ```https://connect.sensorberg.com/api/user/login```
 **Headers:**
 ```
 Content-Type: application/x-www-form-urlencoded
@@ -50,11 +50,11 @@ Content-Type: application/x-www-form-urlencoded
 ```
 email=<email>&password=<password>
 ```
-
 responseBody.response.authToken -> copy this value
 
 ####2. Set your values
-**POST** https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/
+**POST** ```https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/```
+
 **Headers:**
 ```
 Content-Type: application/json
@@ -73,4 +73,4 @@ Authorization: <Auth-Token-FromLogin>
 ```
 
 **3. check if it worked**
-GET https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/
+GET ```https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/```
