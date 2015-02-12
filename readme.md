@@ -17,7 +17,7 @@ If this seems to easy, and you want to vibrate when a beacon is nearby, add the 
 	<uses-permission android:name="android.permission.VIBRATE"/>
 ```
 
-2. your gradle file:
+2. your gradle file:3. 3. 
 ```groovy
 repositories {
     mavenCentral()
@@ -57,11 +57,26 @@ public class DemoApplication extends Application
 
 #customizations:
 
-In 0.9 of the SDK we added the possibility to define different kinds of actions in the web interface. Please be aware of this and implement your custom actions accordingly:
+In 0.9 of the SDK we added the possibility to define different kinds of actions in the web interface. Please be aware of this and implement your custom actions accordingly
 ```java
 @Override
 public void presentBeaconEvent(BeaconEvent beaconEvent) {
     if (beaconEvent.getAction() != null){
+        if (beaconEvent.getAction().getPayload() != null) {
+            try {
+                JSONObject payload = beaconEvent.getAction().getPayloadJSONObject();
+                //example showing custom code based on your payload:
+                if (payload.optBoolean("playSound")) {
+                    MediaPlayer player = MediaPlayer.create(context, R.raw.beeping);
+                    player.prepare();
+                    player.start();
+                }
+            } catch (JSONException e) {
+                //the payload was not a JSONObject
+            } catch (IOException e) {
+                //the Mediaplayer failed :(
+            }
+        }      
         switch (beaconEvent.getAction().getType()){
             case MESSAGE_URI:
                 UriMessageAction uriAction = (UriMessageAction) beaconEvent.getAction();
@@ -79,9 +94,22 @@ public void presentBeaconEvent(BeaconEvent beaconEvent) {
     }
 }
 ```
+
 We will add more custom actions in the future so prepare your code accordingly.
 
+##payload
 
+There is convenience method to support org.json.JSONObject and org.json.JSONArray out of the box. Make sure to check if the payload is null before using the convenience methods. If you decide put other values in the payload, parse them accordingly:
+
+```java
+Boolean output0 = Boolean.valueOf(action.getPayload());
+Integer output1 = Integer.valueOf(action.getPayload());
+Long    output2 = Long(action.getPayload());
+String  output3 = action.getPayload();
+Double  output4 = Double.valueOf(action.getPayload());
+```
+
+**We do recommend sending the payload as a JSONObject!**
 
 #samples
 

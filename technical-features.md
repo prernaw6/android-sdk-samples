@@ -15,7 +15,8 @@
 * stop the SDK completely "opt-out"
 * change the API token at runtime
 * update the configuration for presenting actions at runtime
-* Do retries
+* Do retries of http requests
+* transport any JSON value as a payload to the host application.
 
 #implicit list of features (implemented server side)
 * filter dupplicates (only show x notifications per time unit)

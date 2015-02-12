@@ -1,6 +1,7 @@
 package com.sensorberg.sdk.demo;
 
 import android.app.Application;
+import android.media.MediaPlayer;
 import android.util.Log;
 
 import com.sensorberg.sdk.Logger;
@@ -9,8 +10,14 @@ import com.sensorberg.sdk.action.InAppAction;
 import com.sensorberg.sdk.action.UriMessageAction;
 import com.sensorberg.sdk.action.VisitWebsiteAction;
 import com.sensorberg.sdk.bootstrapper.SensorbergApplicationBootstrapper;
+import com.sensorberg.sdk.demo.demoSeven.R;
 import com.sensorberg.sdk.presenter.PresenterConfiguration;
 import com.sensorberg.sdk.resolver.BeaconEvent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
 
@@ -31,6 +38,21 @@ public class MyCustomBootStrapper extends SensorbergApplicationBootstrapper {
     @Override
     public void presentBeaconEvent(BeaconEvent beaconEvent) {
         if (beaconEvent.getAction() != null){
+            if (beaconEvent.getAction().getPayload() != null) {
+                try {
+                    JSONObject payload = beaconEvent.getAction().getPayloadJSONObject();
+                    //example showing custom code based on your payload:
+                    if (payload.optBoolean("playSound")) {
+                        MediaPlayer player = MediaPlayer.create(context, R.raw.beeping);
+                        player.prepare();
+                        player.start();
+                    }
+                } catch (JSONException e) {
+                    //the payload was not a JSONObject
+                } catch (IOException e) {
+                    //the Mediaplayer failed :(
+                }
+            }
             switch (beaconEvent.getAction().getType()){
                 case MESSAGE_URI:
                     UriMessageAction uriAction = (UriMessageAction) beaconEvent.getAction();
