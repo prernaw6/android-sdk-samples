@@ -10,7 +10,7 @@ allprojects {
         }
     }
 
-    project.ext.sensorbergBootstrapperVersion = "1.9.2"
+    project.ext.sensorbergBootstrapperVersion = "1.9.3"
     project.ext.buildToolsVersion = "21.1.1"
     project.ext.compileSdkVersion = 21
 }
