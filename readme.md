@@ -4,6 +4,9 @@
 
 Before continuing please consider answering this [questionaire](https://docs.google.com/a/sensorberg.com/forms/d/1EvQFPimFyLQBzoWtGNr83Iovx0T6UlnLJqTur5Tz8Kw/viewform)
 
+#Warning
+If you are looking for the Open-Sourced 1.0.0 version of the SDK, please head over to the [Android-SDK](https://github.com/sensorberg-dev/android-sdk) project.
+
 #howto integrate the SDK
 
 We recommend gradle builds and will only document the gradle setup. If you rely on legacy build systems, check the samples, there might be a project that shows how to integrate it with any IDE/build system.
