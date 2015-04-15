@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sensorberg-dev/android-sdk.svg?branch=master)](https://travis-ci.org/sensorberg-dev/android-sdk)
+[![Build Status](https://travis-ci.org/sensorberg-dev/android-sdk-samples.svg)](https://travis-ci.org/sensorberg-dev/android-sdk-samples)
 
 #Welcome to the samples of the Sensorberg Android SDK
 
