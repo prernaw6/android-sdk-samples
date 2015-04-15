@@ -197,3 +197,4 @@ This samples shows, what you should do, if your app is MinApiLevel 9
 
 **YOU SHOULD PROPABLY FOLLOW THIS EXAMPLE ON TOP OF THE OTHER SAMPLES IN ALL YOUR PROJECTS IF YOU ARE minSdkVersion 9**
 
+
