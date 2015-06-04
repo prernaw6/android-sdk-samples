@@ -5,7 +5,7 @@
 Before continuing please consider answering this [questionaire](https://docs.google.com/a/sensorberg.com/forms/d/1EvQFPimFyLQBzoWtGNr83Iovx0T6UlnLJqTur5Tz8Kw/viewform)
 
 #Warning
-If you are looking for the Open-Sourced 1.0.0 version of the SDK, please head over to the [Android-SDK](https://github.com/sensorberg-dev/android-sdk) project.
+The sample have not been updated yet. head over to http://developer.sensorberg.com/android/ for instructions.
 
 #howto integrate the SDK
 
