@@ -5,7 +5,7 @@
 Before continuing please consider answering this [questionaire](https://docs.google.com/a/sensorberg.com/forms/d/1EvQFPimFyLQBzoWtGNr83Iovx0T6UlnLJqTur5Tz8Kw/viewform)
 
 #Warning
-The sample have not been updated yet. head over to http://developer.sensorberg.com/android/ for instructions.
+The sample have not been updated yet. Head over to http://developer.sensorberg.com/android/ for instructions.
 
 #howto integrate the SDK
 
