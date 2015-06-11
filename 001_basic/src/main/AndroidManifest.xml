@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sensorberg.sdk.demo.demoOne"
-    android:versionCode="1"
-    android:versionName="1.0" >
+          package="com.sensorberg.sdk.demo.demoOne"
+          android:versionCode="1"
+          android:versionName="1.0" >
 
     <uses-feature
         android:name="android.hardware.bluetooth_le"
@@ -14,20 +14,28 @@
         android:icon="@drawable/ic_launcher"
         android:label="SB Demo 1"
         android:theme="@android:style/Theme.Black" >
+        <meta-data
+            android:name="com.sensorberg.sdk.ApiKey"
+            android:value="04abfa6fab47f0930cbcd56e9485779cd8d6ad09e127a6ce763c2cb40b144738" />
+
         <activity
-            android:name="com.sensorberg.sdk.demo.DemoActivity"
-            android:label="simple demo"
-            android:screenOrientation="portrait" >
+        android:name="com.sensorberg.sdk.demo.DemoActivity"
+        android:label="simple demo"
+        android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- this is not part of the bootstrapper manifest. It is a really ugly activity...-->
-        <activity android:name="com.sensorberg.sdk.bootstrapper.ActionActivity"
-            android:theme="@android:style/Theme.Dialog"/>
+
+        <receiver android:name="com.sensorberg.sdk.demo.MyActionPresenter"
+                  android:process=".sensorberg"
+                  android:exported="false">
+            <intent-filter>
+                <action android:name="com.sensorberg.android.PRESENT_ACTION" />
+            </intent-filter>
+        </receiver>
 
     </application>
-
 </manifest>
