@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sensorberg.sdk.exception.SdkException;
 import com.sensorberg.sdk.resolver.Resolver;
 import com.sensorberg.sdk.scanner.Scanner;
 
