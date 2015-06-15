@@ -16,7 +16,7 @@
         android:theme="@android:style/Theme.Black" >
         <meta-data
             android:name="com.sensorberg.sdk.ApiKey"
-            android:value="04abfa6fab47f0930cbcd56e9485779cd8d6ad09e127a6ce763c2cb40b144738" />
+            android:value="69954b55cdb77846d1f8b844bfc4004e722c910afdee638012a104f7f9842c33" />
 
         <activity
         android:name="com.sensorberg.sdk.demo.DemoActivity"
