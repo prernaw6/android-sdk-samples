@@ -16,5 +16,5 @@ android {
 
 dependencies {
     compile "com.sensorberg.sdk:android-sdk-bootstrapper:${project.ext.sensorbergBootstrapperVersion}"
-    compile 'com.sensorberg.sdk:android-sdk:1.0.0'
+    compile "com.sensorberg.sdk:android-sdk:${project.ext.sensorbergSDKVersion}"
 }

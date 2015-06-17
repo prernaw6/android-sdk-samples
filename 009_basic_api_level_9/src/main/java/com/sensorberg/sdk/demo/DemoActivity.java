@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sensorberg.sdk.exception.SdkException;
-import com.sensorberg.sdk.internal.AndroidPlattform;
 import com.sensorberg.sdk.resolver.Resolver;
 import com.sensorberg.sdk.scanner.Scanner;
 
@@ -20,10 +18,16 @@ public class DemoActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
         textView = new TextView(this);
+        textView.setText("this is a very basic example...");
 		setContentView(textView);
+	}
 
-        if (!DemoApplication.instance.plattform.isBluetoothLowEnergySupported()){
-            textView.setText("BTLE is not supported on this device");
-        }
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+
+
+        //You might want to inform the user, that btle is not supported on this device and all cool iBeacon features will not be accessible.
 	}
 }

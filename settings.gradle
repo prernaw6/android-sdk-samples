@@ -1,9 +1,3 @@
 include '001_basic'
-//include '002_basic_with_local_dependency'
-//include '003_local_dependency'
-//include '004_basic_with_jar_dependency'
-//include '005_configurable_api_token'
-// '006_basic_with_only_own_presenter' has been removed. see sample 007 which is basically the same
-//include '007_basic_with_only_own_presenter_and_foreground_background_awareness'
-//include '008_basic_api_level_14'
-//include '009_basic_api_level_9'
+include '008_basic_api_level_14'
+include '009_basic_api_level_9'
