@@ -18,6 +18,10 @@
             android:name="com.sensorberg.sdk.ApiKey"
             android:value="69954b55cdb77846d1f8b844bfc4004e722c910afdee638012a104f7f9842c33" />
 
+        <meta-data
+            android:name="com.sensorberg.sdk.resolverURL"
+            android:value="https://resolver.sensorberg.com/layout" />
+
         <activity
         android:name="com.sensorberg.sdk.demo.DemoActivity"
         android:label="simple demo"

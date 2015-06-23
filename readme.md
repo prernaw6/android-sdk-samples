@@ -144,6 +144,7 @@ A reference for a local reference of the aar reference of the SDK. It used the m
 This is not recommended, since you need to **manually** add the sdk dependencies as well. Currently we depend on **com.loopj.android:android-async-http**.
 
 If you want to proceeed using the jar dependenceny:
+
 * **YOU** must download the latest aar artifact
 * **YOU** must check if all dependencies are fullfilled by checking the dependencies in the pom file
 * Do this **ALSO** for the bootstrapper!!!
@@ -156,6 +157,7 @@ If you want to proceeed using the jar dependenceny:
 This project shows that you can also unpack the aar and only reference the included jar file. We are currently not including any resourse files in our SDK, so there is no disadvantage with this method, still, you will propably run into problems in the future. This sample also relies on you to manually add the SDK dependencies as jar files. This method is also **not** recommended. You must also merge the manifest manually and all our declarations. Basically you need to manually merge all the entries from the aar file. Again, please don´t try this at home.
 
 If you want to proceeed using the jar dependenceny:
+
 * **YOU must** download the latest aar artifact **REGULARLY**
 * **YOU must** unpack the aar file
 * **YOU must** extract the jar file
