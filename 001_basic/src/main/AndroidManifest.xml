@@ -32,7 +32,7 @@
 
         <activity
             android:name="com.sensorberg.sdk.demo.DemoActivity"
-            android:label="simple demo"
+            android:label="SB Demo 1"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
