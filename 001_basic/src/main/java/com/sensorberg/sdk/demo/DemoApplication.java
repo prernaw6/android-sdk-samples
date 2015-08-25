@@ -28,7 +28,7 @@ public class DemoApplication extends Application
         Log.d(TAG, "onCreate application");
 
         boot = new SensorbergApplicationBootstrapper(this);
-        boot.activateService();
+        boot.activateService("69954b55cdb77846d1f8b844bfc4004e722c910afdee638012a104f7f9842c33");
         boot.hostApplicationInForeground();
 
         detector = new BackgroundDetector(boot);
