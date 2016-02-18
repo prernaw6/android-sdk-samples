@@ -55,7 +55,7 @@ email=<email>&password=<password>
 responseBody.response.authToken -> copy this value
 
 ####2. Set your values
-**POST** ```https://connect.sensorberg.com/api/applications/<API-TOKEN>/settings/android/```
+**POST** ```https://connect.sensorberg.com/api/applications/<API-KEY>/settings/android/```
 
 **Headers:**
 ```
