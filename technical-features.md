@@ -60,7 +60,7 @@ responseBody.response.authToken -> copy this value
 **Headers:**
 ```
 Content-Type: application/json
-Authorization: <Auth-Token-FromLogin>
+X-Auth-Token: <Auth-Token-FromLogin>
 ```
 **Body:**
 ```
